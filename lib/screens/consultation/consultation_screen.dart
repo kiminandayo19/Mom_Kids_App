@@ -120,13 +120,16 @@ class _ConsultationState extends State<Consultation> {
                                                     ),
                                                   ],
                                                 ),
-                                                child: const Chip(
-                                                  label: Text('Mulai Konsultasi',
+                                                child: OutlinedButton(
+                                                  onPressed: (){},
+                                                  style: OutlinedButton.styleFrom(
+                                                    backgroundColor: Colors.white,
+                                                  ),
+                                                  child: const Text('Mulai Konsultasi',
                                                     style: TextStyle(
                                                         fontSize: 12, fontFamily: 'Avenir-Regular', color: Color(0xFF5B9C97)
                                                     ),
                                                   ),
-                                                  backgroundColor: Colors.white,
                                                 ),
                                               ),
                                               const SizedBox(height: 16,),
