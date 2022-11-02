@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mom_and_kids_app/routes.dart';
+import 'package:mom_and_kids_app/screens/splash.dart';
+
+void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
+  runApp(const MomAndKids());
+}
+
+class MomAndKids extends StatelessWidget {
+  const MomAndKids({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "mom and kids",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFFFCFCFC),
+      ),
+      initialRoute: Splash.routesName,
+      routes: routes,
+    );
+  }
+}
