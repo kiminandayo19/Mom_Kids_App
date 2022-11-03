@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 import 'package:mom_and_kids_app/Widgets/button.dart';
 import 'package:mom_and_kids_app/screens/home/main_home.dart';
 
@@ -17,7 +21,8 @@ class _LoginScreensState extends State<LoginScreens>
     with TickerProviderStateMixin {
   final _regFormKey = GlobalKey();
   String? userName, userEmail, userPassword;
-  int? userId;
+  int? userDoctorId;
+
 
   // Doctor Form Controller
   TextEditingController userDoctorNameController = TextEditingController();
@@ -29,11 +34,46 @@ class _LoginScreensState extends State<LoginScreens>
   TextEditingController userNameController = TextEditingController();
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
-  TextEditingController userIdController = TextEditingController();
+
+
+  Future login() async {
+    String apiurl = "http://192.168.1.9/momkids/login.php"; //api url
+    //dont use http://localhost , because emulator don't get that address
+    //insted use your local IP address or use live URL
+    //hit "ipconfig" in windows or "ip a" in linux to get you local IP
+
+    var response = await http.post(Uri.parse(apiurl), body: {
+      'userEmail': userEmailController, //get the username text
+      'userPassword': userPasswordController, //get password text
+      'userDoctorEmail': userDoctorEmailController, //get the doctor username text
+      'userDoctorPassword': userDoctorPasswordController  //get doctor password text
+    });
+
+    var data = json.decode(response.body);
+    if (data == "Success") {
+      Fluttertoast.showToast(
+          msg: "Login Successful",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.green,
+          fontSize: 25.0);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>Screens(),),);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Username and password invalid'",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.red,
+          fontSize: 25.0);
+    }
+  }
 
   int current = 0;
-
+  //
   bool value = false;
+
   @override
   Widget build(BuildContext context) {
     List<Map<String, String>> navItems = [
@@ -182,13 +222,15 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 10,
           ),
-          Button(
-            width: 50,
-            height: 70,
-            radius: 100,
-            text: "Login",
-            fontSize: 16,
-            routeTo: Screens.routesName,
+          ButtonBar(
+            children: <Widget>[
+              ElevatedButton.icon(
+                  onPressed: () {
+                    login();
+                  },
+                  icon: Icon(Icons.arrow_forward),
+                  label: Text('Login')),
+            ],
           ),
         ],
       ),
@@ -233,13 +275,15 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 10,
           ),
-          Button(
-            width: 50,
-            height: 70,
-            radius: 100,
-            text: "Login",
-            fontSize: 16,
-            routeTo: Screens.routesName,
+          ButtonBar(
+            children: <Widget>[
+              ElevatedButton.icon(
+                  onPressed: () {
+                    login();
+                  },
+                  icon: Icon(Icons.arrow_forward),
+                  label: Text('Login')),
+            ],
           ),
         ],
       ),
@@ -278,36 +322,36 @@ class _LoginScreensState extends State<LoginScreens>
     );
   }
 
-  SizedBox doctorName() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: userDoctorNameController,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "Username",
-          prefixIcon: const Icon(
-            IconData(
-              0xee72,
-              fontFamily: 'MaterialIcons',
-            ),
-            color: Color(0xFF808080),
-          ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
+  // SizedBox doctorName() {
+  //   return SizedBox(
+  //     width: MediaQuery.of(context).size.width,
+  //     height: MediaQuery.of(context).size.height * 0.07,
+  //     child: TextFormField(
+  //       controller: userDoctorNameController,
+  //       keyboardType: TextInputType.text,
+  //       decoration: InputDecoration(
+  //         border: OutlineInputBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //           borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+  //         ),
+  //         filled: true,
+  //         fillColor: const Color(0XFFF4F7F8),
+  //         hintText: "Username",
+  //         prefixIcon: const Icon(
+  //           IconData(
+  //             0xee72,
+  //             fontFamily: 'MaterialIcons',
+  //           ),
+  //           color: Color(0xFF808080),
+  //         ),
+  //         hintStyle: const TextStyle(
+  //           fontSize: 16,
+  //           fontFamily: "Avenir-Roman",
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   SizedBox doctorPassword() {
     return SizedBox(
@@ -402,36 +446,36 @@ class _LoginScreensState extends State<LoginScreens>
     );
   }
 
-  SizedBox userPersonalName() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: userNameController,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "Username",
-          prefixIcon: const Icon(
-            IconData(
-              0xee72,
-              fontFamily: "MaterialIcons",
-            ),
-            color: Color(0xFF808080),
-          ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
+  // SizedBox userPersonalName() {
+  //   return SizedBox(
+  //     width: MediaQuery.of(context).size.width,
+  //     height: MediaQuery.of(context).size.height * 0.07,
+  //     child: TextFormField(
+  //       controller: userNameController,
+  //       keyboardType: TextInputType.text,
+  //       decoration: InputDecoration(
+  //         border: OutlineInputBorder(
+  //           borderRadius: BorderRadius.circular(10),
+  //           borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+  //         ),
+  //         filled: true,
+  //         fillColor: const Color(0XFFF4F7F8),
+  //         hintText: "Username",
+  //         prefixIcon: const Icon(
+  //           IconData(
+  //             0xee72,
+  //             fontFamily: "MaterialIcons",
+  //           ),
+  //           color: Color(0xFF808080),
+  //         ),
+  //         hintStyle: const TextStyle(
+  //           fontSize: 16,
+  //           fontFamily: "Avenir-Roman",
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   SizedBox userPersonalPassword() {
     return SizedBox(

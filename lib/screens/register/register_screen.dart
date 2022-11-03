@@ -1,21 +1,25 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mom_and_kids_app/Widgets/button.dart';
 import 'package:mom_and_kids_app/Widgets/to_login.dart';
+import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 
 class RegisterScreens extends StatefulWidget {
   static String routesName = "/register-page";
   const RegisterScreens({super.key});
 
   @override
-  State<RegisterScreens> createState() => _RegisterScreensState();
+  _RegisterScreensState createState() => _RegisterScreensState();
 }
 
 class _RegisterScreensState extends State<RegisterScreens>
     with TickerProviderStateMixin {
   final _regFormKey = GlobalKey();
-  String? userName, userEmail, userPassword;
-  int? userId;
+  String? userName, userEmail, userPassword, userDoctorName, userDoctorEmail, userDoctorPassword;
+  int? userDoctorId;
 
   // Doctor Form Controller
   TextEditingController userDoctorNameController = TextEditingController();
@@ -27,7 +31,41 @@ class _RegisterScreensState extends State<RegisterScreens>
   TextEditingController userNameController = TextEditingController();
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
-  TextEditingController userIdController = TextEditingController();
+
+
+  Future register() async {
+    String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
+    //dont use http://localhost , because emulator don't get that address
+    //insted use your local IP address or use live URL
+    //hit "ipconfig" in windows or "ip a" in linux to get you local IP
+    var response = await http.post(Uri.parse(apiurl), body: {
+      'userEmail': userEmailController, //get the username text
+      'userPassword': userPasswordController, //get password text
+      'userDoctorEmail': userDoctorEmailController, //get the doctor username text
+      'userDoctorPassword': userDoctorPasswordController,  //get doctor password text
+      'userDoctorId': userDoctorIdController  //get doctor id text
+    });
+    var data = json.decode(response.body);
+    if (data == "Error") {
+      Fluttertoast.showToast(
+          msg: "User already exist.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.red,
+          fontSize: 25.0);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Registration successful.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.green,
+          fontSize: 25.0);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreens(),),);
+    }
+  }
+
 
   int current = 0;
 
@@ -196,12 +234,15 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 10,
           ),
-          const Button(
-            width: 50,
-            height: 70,
-            radius: 100,
-            text: "Sign Up",
-            fontSize: 16,
+          ButtonBar(
+            children: <Widget>[
+              ElevatedButton.icon(
+                  onPressed: () {
+                    register();
+                  },
+                  icon: Icon(Icons.arrow_forward),
+                  label: Text('Sign Up')),
+            ],
           ),
         ],
       ),
@@ -259,12 +300,15 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 10,
           ),
-          const Button(
-            width: 50,
-            height: 70,
-            radius: 100,
-            text: "Sign Up",
-            fontSize: 16,
+          ButtonBar(
+            children: <Widget>[
+              ElevatedButton.icon(
+                  onPressed: () {
+                    register();
+                  },
+                  icon: Icon(Icons.arrow_forward),
+                  label: Text('Sign Up')),
+            ],
           ),
         ],
       ),

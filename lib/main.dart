@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:mom_and_kids_app/routes.dart';
 import 'package:mom_and_kids_app/screens/splash.dart';
+import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -23,7 +23,7 @@ class MomAndKids extends StatelessWidget {
         scaffoldBackgroundColor: const Color(0xFFFCFCFC),
       ),
       initialRoute: Splash.routesName,
-      routes: routes,
+      home: LoginScreens(),
     );
   }
 }

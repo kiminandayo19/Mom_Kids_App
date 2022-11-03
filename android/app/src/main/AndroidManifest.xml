@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sagara.momkids.mom_and_kids_app">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="mom_and_kids_app"
         android:name="${applicationName}"
