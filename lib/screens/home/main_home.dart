@@ -7,8 +7,10 @@ import '../consultation/consultation_screen.dart';
 import 'home_screen.dart';
 
 class Screens extends StatefulWidget {
+  final VoidCallback signOut;
+  Screens(this.signOut, {super.key});
   static String routesName = "/home";
-  const Screens({Key? key}) : super(key: key);
+  // const Screens({Key? key}) : super(key: key);
 
   @override
   State<Screens> createState() => _ScreensState();
@@ -19,9 +21,9 @@ class _ScreensState extends State<Screens> {
 
   static final List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Article(),
-    Consultation(),
-    Forum()
+    const Article(),
+    const Consultation(),
+    const Forum()
   ];
 
   void _onItemTapped(int index) {
@@ -30,9 +32,26 @@ class _ScreensState extends State<Screens> {
     });
   }
 
+  signOut(){
+    setState(() {
+      widget.signOut();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){
+              signOut();
+            },
+            icon: const Icon(Icons.logout_rounded),
+          )
+        ]
+      ),
       extendBodyBehindAppBar: true,
       body: IndexedStack(index: _selectedIndex, children: _widgetOptions),
       bottomNavigationBar: BottomNavigationBar(
