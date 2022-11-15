@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mom_and_kids_app/screens/consultation/consultation_chat_screen.dart';
 import '../../components/searchbox/searchbox_component.dart';
 
 class Consultation extends StatefulWidget {
@@ -10,7 +11,7 @@ class Consultation extends StatefulWidget {
 
 class _ConsultationState extends State<Consultation> {
   List<String> doctors = ["Dr. Risma Hanida Adinah Indah", "Dr. Ira Juita", "Dr. Rully Sendokir", "Dr. Risma Hanida", "Dr. Ira Juita", "Dr. Rully Sendokir", "Dr. Risma Hanida", "Dr. Ira Juita", "Dr. Rully Sendokir"];
-  List<String> image = ["doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3"];
+  List<String> images = ["doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3", "doctor3"];
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class _ConsultationState extends State<Consultation> {
                                           // border: Border.all(width: 0.5),
                                           borderRadius: const BorderRadius.only(topLeft: Radius.circular(10.0), bottomLeft: Radius.circular(15.0)),
                                           image: DecorationImage(
-                                              image: AssetImage("assets/images/${image[index]}.png"),
+                                              image: AssetImage("assets/images/${images[index]}.png"),
                                               fit: BoxFit.cover
                                           ),
                                         ),
@@ -121,7 +122,14 @@ class _ConsultationState extends State<Consultation> {
                                                   ],
                                                 ),
                                                 child: OutlinedButton(
-                                                  onPressed: (){},
+                                                  onPressed: (){
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) => ConsultationChat(receiverName: doctors[index], receiverProfession: "Nutritionist", receiverImage: images[index],)
+                                                      ),
+                                                    );
+                                                  },
                                                   style: OutlinedButton.styleFrom(
                                                     backgroundColor: Colors.white,
                                                   ),
