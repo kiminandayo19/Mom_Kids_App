@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
+import 'package:mom_and_kids_app/screens/Subscriptions/transaction.dart';
 import 'package:mom_and_kids_app/screens/home/main_home.dart';
 import 'package:mom_and_kids_app/screens/register/register_screen.dart';
 import 'screens/GetStarted/get_started_detail_screen.dart';
@@ -20,7 +21,8 @@ final Map<String, WidgetBuilder> routes = {
   StuddlerQScreen.routesName: (context) => const StuddlerQScreen(),
   StuddlerHome.routesName: (context) => const StuddlerHome(),
   Subscription.routesName: (context) => const Subscription(),
-  Payments.routesName: (context) => const Payments(),
+  Payments.routesName: (context) => Payments(),
   RegisterScreens.routesName: (context) => const RegisterScreens(),
   Screens.routesName: (context) => const Screens(),
+  Transaction.routesName: (context) => Transaction(),
 };

@@ -16,12 +16,14 @@ class _PreqQScreenState extends State<PreqQScreen> {
   final _qFormKey = GlobalKey<FormState>();
   String? username;
   int? userage;
-  DateTime? getpregnanton;
+  DateTime? getpregnanton, estimatedBirth, mensPeriod;
   int? currentchild;
 
   TextEditingController txtUserName = TextEditingController();
   TextEditingController txtUserAge = TextEditingController();
   TextEditingController txtGetPregnantOn = TextEditingController();
+  TextEditingController txtEstimatedBirth = TextEditingController();
+  TextEditingController txtMensPeriod = TextEditingController();
   TextEditingController txtCurrentChild = TextEditingController();
 
   @override
@@ -92,7 +94,11 @@ class _PreqQScreenState extends State<PreqQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userName(),
+          textForm(
+            txtUserName,
+            TextInputType.text,
+            "Suci Hendrawati",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -104,7 +110,11 @@ class _PreqQScreenState extends State<PreqQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userAge(),
+          textForm(
+            txtUserAge,
+            TextInputType.text,
+            "28 Years Old",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -116,21 +126,70 @@ class _PreqQScreenState extends State<PreqQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userGetPregnantOn(),
+          textForm(
+            txtGetPregnantOn,
+            TextInputType.text,
+            "02 July 2022",
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Estimated Birth",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontFamily: "Avenir-Roman",
+            ),
+          ),
+          const SizedBox(
+            height: 9,
+          ),
+          textForm(
+            txtEstimatedBirth,
+            TextInputType.text,
+            "02 April 2023",
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          const Text(
+            "Last Menstrual Period",
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontFamily: "Avenir-Roman",
+            ),
+          ),
+          const SizedBox(
+            height: 9,
+          ),
+          textForm(
+            txtMensPeriod,
+            TextInputType.text,
+            "01 July 2022",
+          ),
           const SizedBox(
             height: 10,
           ),
           const Text(
             "Current Number of Child",
             style: TextStyle(
-                fontSize: 16, color: Colors.black, fontFamily: "Avenir-Roman"),
+              fontSize: 16,
+              color: Colors.black,
+              fontFamily: "Avenir-Roman",
+            ),
           ),
           const SizedBox(
             height: 9,
           ),
-          userCurrentChild(),
+          textForm(
+            txtEstimatedBirth,
+            TextInputType.text,
+            "1 Child",
+          ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.1,
+            height: MediaQuery.of(context).size.height * 0.02,
           ),
           Center(
             child: Button(
@@ -147,13 +206,17 @@ class _PreqQScreenState extends State<PreqQScreen> {
     );
   }
 
-  SizedBox userName() {
+  SizedBox textForm(
+    TextEditingController? controllerName,
+    TextInputType? inputType,
+    String? hintText,
+  ) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: txtUserName,
-        keyboardType: TextInputType.text,
+        controller: controllerName,
+        keyboardType: inputType,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -161,79 +224,7 @@ class _PreqQScreenState extends State<PreqQScreen> {
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),
-          hintText: "Suci Hendrawati",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userAge() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtUserAge,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "28 Years Old",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userGetPregnantOn() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtGetPregnantOn,
-        keyboardType: TextInputType.datetime,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "02 July 2022",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userCurrentChild() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtCurrentChild,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "1 Child",
+          hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 16,
             fontFamily: "Avenir-Roman",

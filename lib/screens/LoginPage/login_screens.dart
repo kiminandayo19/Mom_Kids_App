@@ -23,7 +23,6 @@ class _LoginScreensState extends State<LoginScreens>
   String? userName, userEmail, userPassword;
   int? userDoctorId;
 
-
   // Doctor Form Controller
   TextEditingController userDoctorNameController = TextEditingController();
   TextEditingController userDoctorEmailController = TextEditingController();
@@ -35,18 +34,19 @@ class _LoginScreensState extends State<LoginScreens>
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
 
-
   Future login() async {
-    String apiurl = "http://192.168.1.9/momkids/login.php"; //api url
+    String apiurl = "http://192.168.32.81/momkids/login.php"; //api url
     //dont use http://localhost , because emulator don't get that address
     //insted use your local IP address or use live URL
     //hit "ipconfig" in windows or "ip a" in linux to get you local IP
 
     var response = await http.post(Uri.parse(apiurl), body: {
-      'userEmail': userEmailController, //get the username text
-      'userPassword': userPasswordController, //get password text
-      'userDoctorEmail': userDoctorEmailController, //get the doctor username text
-      'userDoctorPassword': userDoctorPasswordController  //get doctor password text
+      'userEmail': userEmailController.text, //get the username text
+      'userPassword': userPasswordController.text, //get password text
+      'userDoctorEmail':
+          userDoctorEmailController.text, //get the doctor username text
+      'userDoctorPassword':
+          userDoctorPasswordController.text //get doctor password text
     });
 
     var data = json.decode(response.body);
@@ -58,7 +58,12 @@ class _LoginScreensState extends State<LoginScreens>
           timeInSecForIosWeb: 1,
           textColor: Colors.green,
           fontSize: 25.0);
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>Screens(),),);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Screens(),
+        ),
+      );
     } else {
       Fluttertoast.showToast(
           msg: "Username and password invalid'",

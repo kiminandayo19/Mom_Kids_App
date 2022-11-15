@@ -18,7 +18,12 @@ class RegisterScreens extends StatefulWidget {
 class _RegisterScreensState extends State<RegisterScreens>
     with TickerProviderStateMixin {
   final _regFormKey = GlobalKey();
-  String? userName, userEmail, userPassword, userDoctorName, userDoctorEmail, userDoctorPassword;
+  dynamic? userName,
+      userEmail,
+      userPassword,
+      userDoctorName,
+      userDoctorEmail,
+      userDoctorPassword;
   int? userDoctorId;
 
   // Doctor Form Controller
@@ -32,40 +37,69 @@ class _RegisterScreensState extends State<RegisterScreens>
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
 
+  // Future regist() async {
+  //   try {
+  //     return await http.post(
+  //         Uri.parse("http://192.168.28.81/momkids_testing/create.php"),
+  //         body: {
+  //           'nama': userInputController.text,
+  //           'pass': userPassController.text,
+  //         }).then((value) {
+  //       var data = jsonDecode(value.body);
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   Future register() async {
-    String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
-    //dont use http://localhost , because emulator don't get that address
-    //insted use your local IP address or use live URL
-    //hit "ipconfig" in windows or "ip a" in linux to get you local IP
-    var response = await http.post(Uri.parse(apiurl), body: {
-      'userEmail': userEmailController, //get the username text
-      'userPassword': userPasswordController, //get password text
-      'userDoctorEmail': userDoctorEmailController, //get the doctor username text
-      'userDoctorPassword': userDoctorPasswordController,  //get doctor password text
-      'userDoctorId': userDoctorIdController  //get doctor id text
-    });
-    var data = json.decode(response.body);
-    if (data == "Error") {
-      Fluttertoast.showToast(
-          msg: "User already exist.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.red,
-          fontSize: 25.0);
-    } else {
-      Fluttertoast.showToast(
-          msg: "Registration successful.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.green,
-          fontSize: 25.0);
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>LoginScreens(),),);
+    String apiurl = "http://192.168.28.81/momkids_testing/create.php";
+    try {
+      return await http.post(Uri.parse(apiurl), body: {
+        'nama': userNameController.text,
+        'pass': userPasswordController.text,
+        'email': userEmailController.text,
+      }).then((value) {
+        var data = jsonDecode(value.body);
+      });
+    } catch (e) {
+      print(e);
     }
   }
-
+  // var response = await http.post(Uri.parse(apiurl), body: {
+  //   'userEmail': userEmailController.text, //get the username text
+  //   'userPassword': userPasswordController.text, //get password text
+  //   'userDoctorEmail':
+  //       userDoctorEmailController.text, //get the doctor username text
+  //   'userDoctorPassword':
+  //       userDoctorPasswordController.text, //get doctor password text
+  //   'userDoctorId': userDoctorIdController.text //get doctor id text
+  // });
+  // var data = json.decode(response.body);
+  // if (data == "Error") {
+  //   Fluttertoast.showToast(
+  //       msg: "User already exist.",
+  //       toastLength: Toast.LENGTH_SHORT,
+  //       gravity: ToastGravity.CENTER,
+  //       timeInSecForIosWeb: 1,
+  //       textColor: Colors.red,
+  //       fontSize: 25.0);
+  // } else {
+  //   Fluttertoast.showToast(
+  //       msg: "Registration successful.",
+  //       toastLength: Toast.LENGTH_SHORT,
+  //       gravity: ToastGravity.CENTER,
+  //       timeInSecForIosWeb: 1,
+  //       textColor: Colors.green,
+  //       fontSize: 25.0);
+  //   Navigator.push(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (context) => LoginScreens(),
+  //     ),
+  //   );
+  // }
+  // }
 
   int current = 0;
 
@@ -251,6 +285,7 @@ class _RegisterScreensState extends State<RegisterScreens>
 
   Form userFormRegist() {
     return Form(
+      key: _regFormKey,
       child: Column(
         children: [
           const SizedBox(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../components/drawer/drawer.dart';
 import '../article/article_screen.dart';
 import '../community/forum_screen.dart';
 import '../consultation/consultation_screen.dart';
+import 'doctor_home_screens.dart';
 import 'home_screen.dart';
 
 class Screens extends StatefulWidget {
@@ -16,9 +18,10 @@ class Screens extends StatefulWidget {
 
 class _ScreensState extends State<Screens> {
   int _selectedIndex = 0;
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   static final List<Widget> _widgetOptions = <Widget>[
-    Home(),
+    DoctorHome(),
     Article(),
     Consultation(),
     Forum()
@@ -33,8 +36,15 @@ class _ScreensState extends State<Screens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
       extendBodyBehindAppBar: true,
       body: IndexedStack(index: _selectedIndex, children: _widgetOptions),
+      drawer: Container(
+        margin: EdgeInsets.only(
+          top: MediaQuery.of(context).size.height * 0.04,
+        ),
+        child: Draw(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[

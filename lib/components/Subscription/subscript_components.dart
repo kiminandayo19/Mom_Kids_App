@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import '../../Screens/Subscriptions/payments.dart';
-import '../../Widgets/button.dart';
+import 'package:mom_and_kids_app/arguments/payments-arg.dart';
+import 'package:mom_and_kids_app/screens/Subscriptions/payments.dart';
 
 class Script extends ListView {
-  final String price, type1, type2, features1, features2, features3, features4;
+  int index;
+  List<int> prices = [10, 25, 30];
+  List<String> features = [
+    "Access on all devices",
+    "Free consultation",
+    "24/7 consultation support",
+    "Unlock premium content",
+  ];
 
   Script({
-    required this.price,
-    required this.type1,
-    required this.type2,
-    required this.features1,
-    required this.features2,
-    required this.features3,
-    required this.features4,
+    required this.index,
     super.key,
   });
 
@@ -35,7 +36,7 @@ class Script extends ListView {
                 padding: const EdgeInsets.all(10),
                 child: RichText(
                   text: TextSpan(
-                    text: "\$$price",
+                    text: "\$${prices[index - 2].toString()}",
                     style: const TextStyle(
                       fontSize: 32,
                       color: Colors.black,
@@ -68,24 +69,24 @@ class Script extends ListView {
             children: [
               RichText(
                 textAlign: TextAlign.center,
-                text: TextSpan(
+                text: const TextSpan(
                   text: "In addition to all features in ",
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontFamily: "Avenir-Roman",
                   ),
                   children: <InlineSpan>[
                     TextSpan(
-                      text: "$type1, $type2",
-                      style: const TextStyle(
+                      text: "classic, premium",
+                      style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Avenir-Roman",
                       ),
                     ),
-                    const TextSpan(
+                    TextSpan(
                       text: " also includes:",
                       style: TextStyle(
                         color: Colors.black,
@@ -104,86 +105,36 @@ class Script extends ListView {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.check_circle_outline_outlined,
-                          color: Color(0XFF8EC3B3),
-                          size: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          features1,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.check_circle_outline_outlined,
-                          color: Color(0XFF8EC3B3),
-                          size: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          features2,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.check_circle_outline_outlined,
-                          color: Color(0XFF8EC3B3),
-                          size: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          features3,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.check_circle_outline_outlined,
-                          color: Color(0XFF8EC3B3),
-                          size: 20,
-                        ),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          features4,
-                          style: const TextStyle(
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      child: ListView.separated(
+                        itemCount: index,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Row(
+                            children: [
+                              const Icon(
+                                Icons.check_circle_outline_outlined,
+                                color: Color(0XFF8EC3B3),
+                                size: 20,
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                features[index],
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return const SizedBox(
+                            height: 20,
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
@@ -191,13 +142,33 @@ class Script extends ListView {
               const SizedBox(
                 height: 31,
               ),
-              Button(
-                width: 60,
-                height: 80,
-                radius: 100,
-                text: "Subscribe",
-                fontSize: 20,
-                routeTo: Payments.routesName,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0XFF62A19B),
+                  minimumSize: const Size(200, 40),
+                  maximumSize: const Size(400, 100),
+                  fixedSize: const Size(60, 60),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    Payments.routesName,
+                    arguments: PaymentArguments(
+                      price: prices[index - 2],
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Subscribe",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ),
             ],
           ),

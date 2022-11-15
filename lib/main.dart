@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mom_and_kids_app/routes.dart';
+import 'package:mom_and_kids_app/screens/Subscriptions/payments.dart';
+import 'package:mom_and_kids_app/screens/home/main_home.dart';
 import 'package:mom_and_kids_app/screens/splash.dart';
-import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -22,8 +24,10 @@ class MomAndKids extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFFCFCFC),
       ),
-      initialRoute: Splash.routesName,
-      home: LoginScreens(),
+      initialRoute: Screens.routesName,
+      // initialRoute: Splash.routesName,
+      // home: LoginScreens(),
+      routes: routes,
     );
   }
 }

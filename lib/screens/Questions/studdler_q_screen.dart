@@ -22,6 +22,7 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
   TextEditingController txtUserName = TextEditingController();
   TextEditingController txtUserAge = TextEditingController();
   TextEditingController txtGetPregnantOn = TextEditingController();
+  TextEditingController txtNameBaby = TextEditingController();
   TextEditingController txtCurrentChild = TextEditingController();
 
   @override
@@ -94,6 +95,7 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
 
   Form pregnantForm() {
     return Form(
+      key: _qFormKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -105,7 +107,11 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userName(),
+          textForm(
+            txtUserName,
+            TextInputType.text,
+            "Suci Hendrawati",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -117,7 +123,11 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userAge(),
+          textForm(
+            txtUserAge,
+            TextInputType.text,
+            "29 Years Old",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -129,7 +139,11 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userGiveBirthOn(),
+          textForm(
+            txtGetPregnantOn,
+            TextInputType.text,
+            "05 April 2022",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -141,7 +155,11 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userBabyName(),
+          textForm(
+            txtNameBaby,
+            TextInputType.text,
+            "1 Child",
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -153,19 +171,27 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           const SizedBox(
             height: 9,
           ),
-          userCurrentChild(),
+          textForm(
+            txtCurrentChild,
+            TextInputType.text,
+            "1 Child",
+          ),
         ],
       ),
     );
   }
 
-  SizedBox userName() {
+  SizedBox textForm(
+    TextEditingController? controllerName,
+    TextInputType? inputType,
+    String? hintText,
+  ) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: txtUserName,
-        keyboardType: TextInputType.text,
+        controller: controllerName,
+        keyboardType: inputType,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -173,103 +199,7 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),
-          hintText: "Suci Hendrawati",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userAge() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtUserAge,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "29 Years Old",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userGiveBirthOn() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtGetPregnantOn,
-        keyboardType: TextInputType.datetime,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "05 April 2022",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userBabyName() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtCurrentChild,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "Zanna Kirania",
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
-      ),
-    );
-  }
-
-  SizedBox userCurrentChild() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: txtCurrentChild,
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: "1 Child",
+          hintText: hintText,
           hintStyle: const TextStyle(
             fontSize: 16,
             fontFamily: "Avenir-Roman",

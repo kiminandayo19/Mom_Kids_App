@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mom_and_kids_app/arguments/payments-arg.dart';
+import 'package:mom_and_kids_app/screens/Subscriptions/transaction.dart';
 import '../../Widgets/AppBars/gs-3.dart';
 import '../../Widgets/button.dart';
 import '../LoginPage/login_screens.dart';
 
 class Payments extends StatefulWidget {
   static String routesName = "/payments";
-  const Payments({super.key});
+  Payments({super.key});
 
   @override
   State<Payments> createState() => _PaymentsState();
 }
 
 class _PaymentsState extends State<Payments> {
-  Object? val;
+  int? val;
   @override
   Widget build(BuildContext context) {
+    var arg = ModalRoute.of(context)?.settings.arguments as PaymentArguments;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const GS3(),
@@ -58,7 +61,7 @@ class _PaymentsState extends State<Payments> {
                   toggleable: true,
                   title: Row(
                     children: [
-                      Image.asset("assets/Images/mastercard.png"),
+                      Image.asset("assets/images/mastercard.png"),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text("Master Card"),
@@ -94,7 +97,7 @@ class _PaymentsState extends State<Payments> {
                   toggleable: true,
                   title: Row(
                     children: [
-                      Image.asset("assets/Images/paypal.png"),
+                      Image.asset("assets/images/paypal.png"),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text("Paypal"),
@@ -130,7 +133,7 @@ class _PaymentsState extends State<Payments> {
                   toggleable: true,
                   title: Row(
                     children: [
-                      Image.asset("assets/Images/visa.png"),
+                      Image.asset("assets/images/visa.png"),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text("Visa"),
@@ -166,7 +169,7 @@ class _PaymentsState extends State<Payments> {
                   toggleable: true,
                   title: Row(
                     children: [
-                      Image.asset("assets/Images/bca.png"),
+                      Image.asset("assets/images/bca.png"),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text("BCA Virtual Account"),
@@ -202,7 +205,7 @@ class _PaymentsState extends State<Payments> {
                   toggleable: true,
                   title: Row(
                     children: [
-                      Image.asset("assets/Images/bni.png"),
+                      Image.asset("assets/images/bni.png"),
                       Container(
                         margin: const EdgeInsets.only(left: 10),
                         child: const Text("BNI Mobile"),
@@ -216,13 +219,32 @@ class _PaymentsState extends State<Payments> {
             const SizedBox(
               height: 40,
             ),
-            Button(
-              width: 60,
-              height: 60,
-              text: "Continue",
-              fontSize: 20,
-              radius: 100,
-              routeTo: LoginScreens.routesName,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0XFF62A19B),
+                fixedSize: const Size(60, 60),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(100),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  Transaction.routesName,
+                  arguments: PaymentArguments(
+                    price: arg.price,
+                    val: val,
+                  ),
+                );
+              },
+              child: const Text(
+                "Continue",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
             ),
           ],
         ),
