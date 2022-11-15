@@ -37,10 +37,6 @@ class _LoginScreensState extends State<LoginScreens>
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
 
-<<<<<<< HEAD
-  Future login() async {
-    String apiurl = "http://192.168.32.81/momkids/login.php"; //api url
-=======
   bool _secureText = true;
 
   showHide() {
@@ -59,26 +55,15 @@ class _LoginScreensState extends State<LoginScreens>
 
   login() async {
     String apiurl = "http://192.168.1.9/momkids/login.php"; //api url
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
     //dont use http://localhost , because emulator don't get that address
     //instead use your local IP address or use live URL
     //hit "ipconfig" in windows or "ip a" in linux to get you local IP
 
-<<<<<<< HEAD
-    var response = await http.post(Uri.parse(apiurl), body: {
-      'userEmail': userEmailController.text, //get the username text
-      'userPassword': userPasswordController.text, //get password text
-      'userDoctorEmail':
-          userDoctorEmailController.text, //get the doctor username text
-      'userDoctorPassword':
-          userDoctorPasswordController.text //get doctor password text
-=======
     final response = await http.post(Uri.parse(apiurl), body: {
       'userEmail': userEmailController.text, //get the username text
       'userPassword': userPasswordController.text, //get password text
       'userDoctorEmail': userDoctorEmailController.text, //get the doctor username text
       'userDoctorPassword': userDoctorPasswordController.text  //get doctor password text
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
     });
 
     final data = json.decode(response.body);
@@ -95,15 +80,6 @@ class _LoginScreensState extends State<LoginScreens>
           timeInSecForIosWeb: 1,
           textColor: Colors.green,
           fontSize: 25.0);
-<<<<<<< HEAD
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Screens(),
-        ),
-      );
-=======
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
     } else {
       Fluttertoast.showToast(
           msg: "Login Gagal.",

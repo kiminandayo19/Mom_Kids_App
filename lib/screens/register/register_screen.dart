@@ -16,7 +16,6 @@ class RegisterScreens extends StatefulWidget {
 
 class _RegisterScreensState extends State<RegisterScreens>
     with TickerProviderStateMixin {
-<<<<<<< HEAD
   final _regFormKey = GlobalKey();
   dynamic? userName,
       userEmail,
@@ -25,25 +24,22 @@ class _RegisterScreensState extends State<RegisterScreens>
       userDoctorEmail,
       userDoctorPassword;
   int? userDoctorId;
-=======
   final _key = GlobalKey<FormState>();
-  String? userName, userEmail, userPassword, userDoctorName, userDoctorEmail, userDoctorPassword, userDoctorId;
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
+  // String? userName, userEmail, userPassword, userDoctorName, userDoctorEmail, userDoctorPassword, userDoctorId;
 
-  // // Doctor Form Controller
-  // TextEditingController userDoctorNameController = TextEditingController();
-  // TextEditingController userDoctorEmailController = TextEditingController();
-  // TextEditingController userDoctorPasswordController = TextEditingController();
-  // TextEditingController userDoctorIdController = TextEditingController();
-  //
-  // // User Form Controller
-  // TextEditingController userNameController = TextEditingController();
-  // TextEditingController userEmailController = TextEditingController();
-  // TextEditingController userPasswordController = TextEditingController();
+  // Doctor Form Controller
+  TextEditingController userDoctorNameController = TextEditingController();
+  TextEditingController userDoctorEmailController = TextEditingController();
+  TextEditingController userDoctorPasswordController = TextEditingController();
+  TextEditingController userDoctorIdController = TextEditingController();
+
+  // User Form Controller
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController userEmailController = TextEditingController();
+  TextEditingController userPasswordController = TextEditingController();
 
   bool _secureText = true;
 
-<<<<<<< HEAD
   // Future regist() async {
   //   try {
   //     return await http.post(
@@ -71,91 +67,74 @@ class _RegisterScreensState extends State<RegisterScreens>
       });
     } catch (e) {
       print(e);
-=======
+    }
+  }
+
   showHide() {
     setState(() {
       _secureText = !_secureText;
     });
   }
+  // String apiurl = "http://192.168.28.81/momkids_testing/create.php";
+  // try {
+  //   return await http.post(Uri.parse(apiurl), body: {
+  //     'nama': userNameController.text,
+  //     'pass': userPasswordController.text,
+  //     'email': userEmailController.text,
+  //   }).then((value) {
+  //     var data = jsonDecode(value.body);
+  //   });
+  // } catch (e) {
+  //   print(e);
+  //   showHide() {
+  //     setState(() {
+  //       _secureText = !_secureText;
+  //     });
+  //   }
+
+  // register() async {
+  //   String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
+  //   //dont use http://localhost , because emulator don't get that address
+  //   //instead use your local IP address or use live URL
+  //   //hit "ipconfig" in windows or "ip a" in linux to get you local IP
+  //   final response = await http.post(Uri.parse(apiurl), body: {
+  //     'userEmail': userEmail, //get the username text
+  //     'userPassword': userPassword, //get password text
+  //     'userDoctorEmail': userDoctorEmail, //get the doctor username text
+  //     'userDoctorPassword': userDoctorPassword, //get doctor password text
+  //     'userDoctorId': userDoctorId //get doctor id text
+  //   });
+  //   final data = json.decode(response.body);
+  //   int value = data['value'];
+  //   if (value == 1) {
+  //     setState(() {
+  //       Navigator.pop(context);
+  //     });
+  //     Fluttertoast.showToast(
+  //         msg: "Akun anda berhasil didaftarkan.",
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.CENTER,
+  //         timeInSecForIosWeb: 1,
+  //         textColor: Colors.green,
+  //         fontSize: 25.0);
+  //   } else {
+  //     Fluttertoast.showToast(
+  //         msg: "Email sudah terdaftar.",
+  //         toastLength: Toast.LENGTH_SHORT,
+  //         gravity: ToastGravity.CENTER,
+  //         timeInSecForIosWeb: 1,
+  //         textColor: Colors.red,
+  //         fontSize: 25.0);
+  //   }
+  // }
 
   check() {
     final form = _key.currentState!;
-    if(form.validate()) {
+    if (form.validate()) {
       form.save();
       register();
     }
   }
-
-  register() async {
-    String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
-    //dont use http://localhost , because emulator don't get that address
-    //instead use your local IP address or use live URL
-    //hit "ipconfig" in windows or "ip a" in linux to get you local IP
-    final response = await http.post(Uri.parse(apiurl), body: {
-      'userEmail': userEmail, //get the username text
-      'userPassword': userPassword, //get password text
-      'userDoctorEmail': userDoctorEmail, //get the doctor username text
-      'userDoctorPassword': userDoctorPassword,  //get doctor password text
-      'userDoctorId': userDoctorId  //get doctor id text
-    });
-    final data = json.decode(response.body);
-    int value = data['value'];
-    if (value == 1 ) {
-      setState(() {
-        Navigator.pop(context);
-      });
-      Fluttertoast.showToast(
-          msg: "Akun anda berhasil didaftarkan.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.green,
-          fontSize: 25.0);
-    } else {
-      Fluttertoast.showToast(
-          msg: "Email sudah terdaftar.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          textColor: Colors.red,
-          fontSize: 25.0);
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
-    }
-  }
-  // var response = await http.post(Uri.parse(apiurl), body: {
-  //   'userEmail': userEmailController.text, //get the username text
-  //   'userPassword': userPasswordController.text, //get password text
-  //   'userDoctorEmail':
-  //       userDoctorEmailController.text, //get the doctor username text
-  //   'userDoctorPassword':
-  //       userDoctorPasswordController.text, //get doctor password text
-  //   'userDoctorId': userDoctorIdController.text //get doctor id text
-  // });
-  // var data = json.decode(response.body);
-  // if (data == "Error") {
-  //   Fluttertoast.showToast(
-  //       msg: "User already exist.",
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.CENTER,
-  //       timeInSecForIosWeb: 1,
-  //       textColor: Colors.red,
-  //       fontSize: 25.0);
-  // } else {
-  //   Fluttertoast.showToast(
-  //       msg: "Registration successful.",
-  //       toastLength: Toast.LENGTH_SHORT,
-  //       gravity: ToastGravity.CENTER,
-  //       timeInSecForIosWeb: 1,
-  //       textColor: Colors.green,
-  //       fontSize: 25.0);
-  //   Navigator.push(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (context) => LoginScreens(),
-  //     ),
-  //   );
-  // }
-  // }
 
   int current = 0;
 
@@ -342,11 +321,7 @@ class _RegisterScreensState extends State<RegisterScreens>
 
   Form userFormRegist() {
     return Form(
-<<<<<<< HEAD
       key: _regFormKey,
-=======
-      key: _key,
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
       child: Column(
         children: [
           const SizedBox(
@@ -423,7 +398,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved: (e)=>userDoctorEmail = e,
+        onSaved: (e) => userDoctorEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -460,7 +435,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved: (e)=>userDoctorName = e,
+        onSaved: (e) => userDoctorName = e,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -491,13 +466,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-          validator: (e) {
-            if (e!.isEmpty) {
-              return "Password tidak boleh kosong";
-            }
-            return null;
-          },
-        onSaved: (e)=>userDoctorPassword = e,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Password tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e) => userDoctorPassword = e,
         obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
@@ -506,7 +481,7 @@ class _RegisterScreensState extends State<RegisterScreens>
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
           ),
           suffixIcon: IconButton(
-            onPressed: showHide,
+            onPressed: showHide(),
             icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
@@ -538,7 +513,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved: (e)=>userDoctorId = e,
+        onSaved: (e) => userDoctorId = e as int?,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -575,7 +550,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved: (e)=>userEmail = e,
+        onSaved: (e) => userEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -612,7 +587,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved: (e)=>userName = e,
+        onSaved: (e) => userName = e,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -649,7 +624,7 @@ class _RegisterScreensState extends State<RegisterScreens>
           }
           return null;
         },
-        onSaved:(e)=>userPassword = e,
+        onSaved: (e) => userPassword = e,
         obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../components/drawer/drawer.dart';
 import '../article/article_screen.dart';
 import '../community/forum_screen.dart';
@@ -23,17 +22,10 @@ class _ScreensState extends State<Screens> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   static final List<Widget> _widgetOptions = <Widget>[
-<<<<<<< HEAD
     DoctorHome(),
     Article(),
     Consultation(),
     Forum()
-=======
-    Home(),
-    const Article(),
-    const Consultation(),
-    const Forum()
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
   ];
 
   void _onItemTapped(int index) {
@@ -52,20 +44,7 @@ class _ScreensState extends State<Screens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-<<<<<<< HEAD
       key: scaffoldKey,
-=======
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            onPressed: (){
-              signOut();
-            },
-            icon: const Icon(Icons.logout_rounded),
-          )
-        ]
-      ),
->>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
       extendBodyBehindAppBar: true,
       body: IndexedStack(index: _selectedIndex, children: _widgetOptions),
       drawer: Container(
