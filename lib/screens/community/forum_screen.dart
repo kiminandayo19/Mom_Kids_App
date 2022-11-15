@@ -50,7 +50,7 @@ class _ForumState extends State<Forum> {
     return Scaffold(
       backgroundColor: const Color(0xFFF7FAF9),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         elevation: 1,
         title: const Text("Forum",
           style: TextStyle(fontFamily: "Avenir-Regular", fontSize: 20, color: Colors.black),
@@ -151,57 +151,61 @@ class _ForumState extends State<Forum> {
                       ],
                       color: Colors.white
                     ),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForumDetail(title: originalItems[index]),
-                          ),
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(items[index],
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                      fontFamily: "Avenir-Regular", fontSize: 16,
+                    child: Material(
+                      borderRadius: BorderRadius.circular(8),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ForumDetail(title: originalItems[index]),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(items[index],
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontFamily: "Avenir-Regular", fontSize: 16,
+                                      ),
                                     ),
-                                  ),
 
-                                  const SizedBox(height: 11.0,),
+                                    const SizedBox(height: 11.0,),
 
-                                  Text("77 People",
-                                    style: TextStyle(
-                                      fontFamily: "Avenir-Regular", fontSize: 12, color: Color(0xFF949494),
+                                    Text("77 People",
+                                      style: TextStyle(
+                                        fontFamily: "Avenir-Regular", fontSize: 12, color: Color(0xFF949494),
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          ),
 
-                          // Spacer(),
+                            // Spacer(),
 
-                          Container(
-                            width: 153.0,
-                            height: 72,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4)),
-                              image: DecorationImage(
-                                  image: AssetImage("assets/images/education_forum.png"),
-                                  fit: BoxFit.cover
+                            Container(
+                              width: 153.0,
+                              height: 72,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topRight: Radius.circular(4), bottomRight: Radius.circular(4)),
+                                image: DecorationImage(
+                                    image: AssetImage("assets/images/education_forum.png"),
+                                    fit: BoxFit.cover
+                                ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );
