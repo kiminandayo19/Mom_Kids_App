@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mom_and_kids_app/Widgets/button.dart';
 import 'package:mom_and_kids_app/Widgets/to_login.dart';
-import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
+// import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 
 class RegisterScreens extends StatefulWidget {
   static String routesName = "/register-page";
   const RegisterScreens({super.key});
 
   @override
-  _RegisterScreensState createState() => _RegisterScreensState();
+  State<RegisterScreens> createState() => _RegisterScreensState();
 }
 
 class _RegisterScreensState extends State<RegisterScreens>
     with TickerProviderStateMixin {
+<<<<<<< HEAD
   final _regFormKey = GlobalKey();
   dynamic? userName,
       userEmail,
@@ -25,18 +25,25 @@ class _RegisterScreensState extends State<RegisterScreens>
       userDoctorEmail,
       userDoctorPassword;
   int? userDoctorId;
+=======
+  final _key = GlobalKey<FormState>();
+  String? userName, userEmail, userPassword, userDoctorName, userDoctorEmail, userDoctorPassword, userDoctorId;
+>>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
 
-  // Doctor Form Controller
-  TextEditingController userDoctorNameController = TextEditingController();
-  TextEditingController userDoctorEmailController = TextEditingController();
-  TextEditingController userDoctorPasswordController = TextEditingController();
-  TextEditingController userDoctorIdController = TextEditingController();
+  // // Doctor Form Controller
+  // TextEditingController userDoctorNameController = TextEditingController();
+  // TextEditingController userDoctorEmailController = TextEditingController();
+  // TextEditingController userDoctorPasswordController = TextEditingController();
+  // TextEditingController userDoctorIdController = TextEditingController();
+  //
+  // // User Form Controller
+  // TextEditingController userNameController = TextEditingController();
+  // TextEditingController userEmailController = TextEditingController();
+  // TextEditingController userPasswordController = TextEditingController();
 
-  // User Form Controller
-  TextEditingController userNameController = TextEditingController();
-  TextEditingController userEmailController = TextEditingController();
-  TextEditingController userPasswordController = TextEditingController();
+  bool _secureText = true;
 
+<<<<<<< HEAD
   // Future regist() async {
   //   try {
   //     return await http.post(
@@ -64,6 +71,55 @@ class _RegisterScreensState extends State<RegisterScreens>
       });
     } catch (e) {
       print(e);
+=======
+  showHide() {
+    setState(() {
+      _secureText = !_secureText;
+    });
+  }
+
+  check() {
+    final form = _key.currentState!;
+    if(form.validate()) {
+      form.save();
+      register();
+    }
+  }
+
+  register() async {
+    String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
+    //dont use http://localhost , because emulator don't get that address
+    //instead use your local IP address or use live URL
+    //hit "ipconfig" in windows or "ip a" in linux to get you local IP
+    final response = await http.post(Uri.parse(apiurl), body: {
+      'userEmail': userEmail, //get the username text
+      'userPassword': userPassword, //get password text
+      'userDoctorEmail': userDoctorEmail, //get the doctor username text
+      'userDoctorPassword': userDoctorPassword,  //get doctor password text
+      'userDoctorId': userDoctorId  //get doctor id text
+    });
+    final data = json.decode(response.body);
+    int value = data['value'];
+    if (value == 1 ) {
+      setState(() {
+        Navigator.pop(context);
+      });
+      Fluttertoast.showToast(
+          msg: "Akun anda berhasil didaftarkan.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.green,
+          fontSize: 25.0);
+    } else {
+      Fluttertoast.showToast(
+          msg: "Email sudah terdaftar.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          textColor: Colors.red,
+          fontSize: 25.0);
+>>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
     }
   }
   // var response = await http.post(Uri.parse(apiurl), body: {
@@ -215,6 +271,7 @@ class _RegisterScreensState extends State<RegisterScreens>
 
   Form doctorFormRegist() {
     return Form(
+      key: _key,
       child: Column(
         children: [
           const SizedBox(
@@ -272,10 +329,10 @@ class _RegisterScreensState extends State<RegisterScreens>
             children: <Widget>[
               ElevatedButton.icon(
                   onPressed: () {
-                    register();
+                    check();
                   },
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Sign Up')),
+                  icon: const Icon(Icons.arrow_forward),
+                  label: const Text('Sign Up')),
             ],
           ),
         ],
@@ -285,7 +342,11 @@ class _RegisterScreensState extends State<RegisterScreens>
 
   Form userFormRegist() {
     return Form(
+<<<<<<< HEAD
       key: _regFormKey,
+=======
+      key: _key,
+>>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
       child: Column(
         children: [
           const SizedBox(
@@ -339,10 +400,10 @@ class _RegisterScreensState extends State<RegisterScreens>
             children: <Widget>[
               ElevatedButton.icon(
                   onPressed: () {
-                    register();
+                    check();
                   },
-                  icon: Icon(Icons.arrow_forward),
-                  label: Text('Sign Up')),
+                  icon: const Icon(Icons.arrow_forward),
+                  label: const Text('Sign Up')),
             ],
           ),
         ],
@@ -356,7 +417,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userDoctorEmailController,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Email tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e)=>userDoctorEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -387,7 +454,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userDoctorNameController,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Nama tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e)=>userDoctorName = e,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -418,13 +491,23 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userDoctorPasswordController,
-        obscureText: true,
+          validator: (e) {
+            if (e!.isEmpty) {
+              return "Password tidak boleh kosong";
+            }
+            return null;
+          },
+        onSaved: (e)=>userDoctorPassword = e,
+        obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+          ),
+          suffixIcon: IconButton(
+            onPressed: showHide,
+            icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),
@@ -449,7 +532,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userDoctorIdController,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Id tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e)=>userDoctorId = e,
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -480,7 +569,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userEmailController,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Email tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e)=>userEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -511,7 +606,13 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userNameController,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Nama tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved: (e)=>userName = e,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -542,13 +643,23 @@ class _RegisterScreensState extends State<RegisterScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
-        controller: userPasswordController,
-        obscureText: true,
+        validator: (e) {
+          if (e!.isEmpty) {
+            return "Password tidak boleh kosong";
+          }
+          return null;
+        },
+        onSaved:(e)=>userPassword = e,
+        obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
+          ),
+          suffixIcon: IconButton(
+            onPressed: showHide,
+            icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),

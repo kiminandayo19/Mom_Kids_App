@@ -9,8 +9,10 @@ import 'doctor_home_screens.dart';
 import 'home_screen.dart';
 
 class Screens extends StatefulWidget {
+  final VoidCallback signOut;
+  Screens(this.signOut, {super.key});
   static String routesName = "/home";
-  const Screens({Key? key}) : super(key: key);
+  // const Screens({Key? key}) : super(key: key);
 
   @override
   State<Screens> createState() => _ScreensState();
@@ -21,10 +23,17 @@ class _ScreensState extends State<Screens> {
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   static final List<Widget> _widgetOptions = <Widget>[
+<<<<<<< HEAD
     DoctorHome(),
     Article(),
     Consultation(),
     Forum()
+=======
+    Home(),
+    const Article(),
+    const Consultation(),
+    const Forum()
+>>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
   ];
 
   void _onItemTapped(int index) {
@@ -33,10 +42,30 @@ class _ScreensState extends State<Screens> {
     });
   }
 
+  signOut(){
+    setState(() {
+      widget.signOut();
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       key: scaffoldKey,
+=======
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){
+              signOut();
+            },
+            icon: const Icon(Icons.logout_rounded),
+          )
+        ]
+      ),
+>>>>>>> bc599ad3a69822dead13d9eb9d226580deb952ea
       extendBodyBehindAppBar: true,
       body: IndexedStack(index: _selectedIndex, children: _widgetOptions),
       drawer: Container(

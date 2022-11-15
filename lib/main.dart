@@ -18,7 +18,7 @@ class MomAndKids extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "mom and kids",
+      title: "Mom and Kids",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
