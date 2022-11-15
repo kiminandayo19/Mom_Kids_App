@@ -41,6 +41,10 @@ class _ForumDetailState extends State<ForumDetail> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        useMaterial3: true,
+        scaffoldBackgroundColor: const Color(0xFFFCFCFC),
+      ),
       home: Scaffold(
         backgroundColor: const Color(0xFFF7FAF9),
         appBar: AppBar(
@@ -48,7 +52,7 @@ class _ForumDetailState extends State<ForumDetail> {
             color: Colors.black,
             onPressed: () => Navigator.of(context).pop(),
           ),
-          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
           elevation: 1,
           title: Text(widget.title,
             style: const TextStyle(fontFamily: "Avenir-Regular", fontSize: 20, color: Colors.black),
