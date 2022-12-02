@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 import 'package:mom_and_kids_app/screens/Subscriptions/subscription_screen.dart';
+import 'package:mom_and_kids_app/screens/profile/profile.dart';
 
 class Draw extends Drawer {
   List<String> menuName = [
@@ -85,10 +87,24 @@ class Draw extends Drawer {
                       ),
                       GestureDetector(
                         onTap: () {
-                          index == 2
-                              ? Navigator.pushNamed(
-                                  context, Subscription.routesName)
-                              : null;
+                          if (index == 2) {
+                            Navigator.pushNamed(
+                              context,
+                              Subscription.routesName,
+                            );
+                          } else if (index == 0) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              ProfileDetail.routesName,
+                            );
+                          } else if (index == 3) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              LoginScreens.routesName,
+                            );
+                          } else {
+                            return;
+                          }
                         },
                         child: Text(
                           menuName[index],

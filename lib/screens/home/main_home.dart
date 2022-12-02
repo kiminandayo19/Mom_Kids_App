@@ -9,23 +9,36 @@ import 'home_screen.dart';
 
 class Screens extends StatefulWidget {
   final VoidCallback signOut;
-  Screens(this.signOut, {super.key});
+  String user;
+  Screens(this.signOut, this.user, {super.key});
   static String routesName = "/home";
   // const Screens({Key? key}) : super(key: key);
 
   @override
-  State<Screens> createState() => _ScreensState();
+  State<Screens> createState() => _ScreensState(user);
 }
 
 class _ScreensState extends State<Screens> {
   int _selectedIndex = 0;
+  String? _user;
   GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  _ScreensState(String user) {
+    this._user = user;
+  }
+
+  static final List<Widget> _widgetOptionsPreg = <Widget>[
+    Home(),
+    Article(),
+    Consultation(),
+    Forum(),
+  ];
 
   static final List<Widget> _widgetOptions = <Widget>[
     DoctorHome(),
+    // Home(),
     Article(),
     Consultation(),
-    Forum()
+    Forum(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,20 +47,49 @@ class _ScreensState extends State<Screens> {
     });
   }
 
-  signOut(){
+  signOut() {
     setState(() {
       widget.signOut();
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
       extendBodyBehindAppBar: true,
-      body: IndexedStack(index: _selectedIndex, children: _widgetOptions),
+      appBar: _selectedIndex == 0
+          ? AppBar(
+              leading: Builder(
+                builder: (BuildContext context) {
+                  return IconButton(
+                    icon: const Icon(
+                      Icons.menu,
+                      color: Color(0xFF000000),
+                    ),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                  );
+                },
+              ),
+              centerTitle: true,
+              title: const Text(
+                "Hi, Suci Hendrawati",
+                style: TextStyle(
+                    fontFamily: "Avenir-Black",
+                    fontSize: 16.0,
+                    color: Colors.black),
+              ),
+              backgroundColor: Colors.transparent,
+            )
+          : null,
+      body: IndexedStack(
+          index: _selectedIndex,
+          children:
+              _user == "arif@gmail.com" ? _widgetOptionsPreg : _widgetOptions),
       drawer: Container(
+        color: Colors.white,
         margin: EdgeInsets.only(
           top: MediaQuery.of(context).size.height * 0.04,
         ),

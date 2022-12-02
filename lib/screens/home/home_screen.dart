@@ -4,7 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 class Home extends StatelessWidget {
   Home({Key? key}) : super(key: key);
 
-  List<String> activities = ["Pregnancy exercise", "Drink more water", "Eat more protein"];
+  List<String> activities = [
+    "Pregnancy exercise",
+    "Drink more water",
+    "Eat more protein"
+  ];
   List<int> quantity = [30, 2, 40];
   List<String> icon = ["exercise", "water", "exercise"];
   List<String> frequency = ["mins/day", "lt/days", "gr/day"];
@@ -15,144 +19,19 @@ class Home extends StatelessWidget {
       physics: const ScrollPhysics(),
       child: Column(
         children: <Widget>[
-          Stack(
-            // alignment: const Alignment(0, 15),
-            children: <Widget>[
-              Container(
-                height: 233,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.elliptical(
-                          MediaQuery.of(context).size.width,
-                          120.0),
-                    ),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xff4d918f), Color(0xff8ec3b3)],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    )
-                ),
-              ),
-
-              Column(
-                  children: const <Widget>[
-                    SizedBox(height: 55,),
-                    Center(
-                      child: Text(
-                        "Hi, Suci Hendrawati.",
-                        style: TextStyle(
-                            fontFamily: "Avenir-Black",
-                            fontSize: 16.0,
-                            color: Colors.white
-                        ),
-                      ),
-                    ),
-                  ]
-              ),
-
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 96.0),
-                    child: Container(
-                      height: 219,
-                      width: 219,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(1000),
-                          boxShadow: [BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 15,
-                            offset: const Offset(0, 4),
-                          )]
-                      ),
-                      child: SvgPicture.asset(
-                        "assets/images/home_ava.svg",
-                        fit: BoxFit.scaleDown,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 162.0 ),
-                    alignment: const Alignment(-1.1, 0),
-                    child: Container(
-                      height: 58,
-                      width: 58,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(1000),
-                          boxShadow: [BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 15,
-                            offset: const Offset(0, 4),
-                          )]
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 9.24),
-                        child: SvgPicture.asset(
-                          "assets/images/home_ava.svg",
-                          width: 1, height: 1,
-                          // fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-
-              Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(top: 162.0 ),
-                    alignment: const Alignment(1.1, 0),
-                    child: Container(
-                      height: 58,
-                      width: 58,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(1000),
-                          boxShadow: [BoxShadow(
-                            color: Colors.black.withOpacity(0.1),
-                            blurRadius: 15,
-                            offset: const Offset(0, 4),
-                          )]
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 9.24),
-                        child: SvgPicture.asset(
-                          "assets/images/home_ava.svg",
-                          width: 1, height: 1,
-                          // fit: BoxFit.scaleDown,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.2,
           ),
-
-          const SizedBox(height: 12,),
-
           const Text(
             "First trismester of pregnancy",
             style: TextStyle(
                 fontFamily: "Avenir-Black",
                 fontSize: 20.0,
-                fontWeight: FontWeight.bold
-            ),
+                fontWeight: FontWeight.bold),
           ),
-
-          const SizedBox(height: 8,),
-
+          const SizedBox(
+            height: 8,
+          ),
           const SizedBox(
             width: 270,
             child: Text(
@@ -164,85 +43,77 @@ class Home extends StatelessWidget {
               ),
             ),
           ),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Chip(
                 avatar: SvgPicture.asset("assets/icons/weight_icon.svg"),
                 label: RichText(
-                  text: const TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '9.5',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Avenir-Regular",
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' gr',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Avenir-Regular",
-                            fontSize: 10.0,
-                          ),
-                        ),
-                      ]
-                  ),
+                  text: const TextSpan(children: <TextSpan>[
+                    TextSpan(
+                      text: '9.5',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Avenir-Regular",
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' gr',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Avenir-Regular",
+                        fontSize: 10.0,
+                      ),
+                    ),
+                  ]),
                 ),
                 backgroundColor: const Color(0xFF79B3A8).withOpacity(0.15),
               ),
-              const SizedBox(width: 8.0,),
+              const SizedBox(
+                width: 8.0,
+              ),
               Chip(
                 avatar: SvgPicture.asset("assets/icons/length_icon.svg"),
                 label: RichText(
-                  text: const TextSpan(
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '30.2',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Avenir-Regular",
-                            fontSize: 14.0,
-                          ),
-                        ),
-                        TextSpan(
-                          text: ' cm',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: "Avenir-Regular",
-                            fontSize: 10.0,
-                          ),
-                        ),
-                      ]
-                  ),
+                  text: const TextSpan(children: <TextSpan>[
+                    TextSpan(
+                      text: '30.2',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Avenir-Regular",
+                        fontSize: 14.0,
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' cm',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: "Avenir-Regular",
+                        fontSize: 10.0,
+                      ),
+                    ),
+                  ]),
                 ),
                 backgroundColor: const Color(0xFF79B3A8).withOpacity(0.15),
               ),
-
             ],
           ),
-
-          const SizedBox(height: 29,),
-
-          Row(
-              children: const <Widget>[
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Text(
-                    "Task to Do",
-                    style: TextStyle(
-                        fontFamily: "Avenir-Black",
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold
-                    ),
-                  ),
-                ),
-              ]
+          const SizedBox(
+            height: 29,
           ),
-
+          Row(children: const <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                "Task to Do",
+                style: TextStyle(
+                    fontFamily: "Avenir-Black",
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ]),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
@@ -264,7 +135,8 @@ class Home extends StatelessWidget {
                             color: const Color(0xFF336A63).withOpacity(0.1),
                             spreadRadius: 0,
                             blurRadius: 12,
-                            offset: const Offset(0, 2), // changes position of shadow
+                            offset: const Offset(
+                                0, 2), // changes position of shadow
                           ),
                         ],
                       ),
@@ -272,9 +144,9 @@ class Home extends StatelessWidget {
                         elevation: 0,
                         shadowColor: Colors.transparent,
                         child: ListTile(
-                          contentPadding: const EdgeInsets.only(left: 0.0, top: 4.0),
-                          leading:
-                          SvgPicture.asset(
+                          contentPadding:
+                              const EdgeInsets.only(left: 0.0, top: 4.0),
+                          leading: SvgPicture.asset(
                             "assets/icons/${icon[index]}_icon.svg",
                             fit: BoxFit.fitWidth,
                           ),
@@ -295,8 +167,9 @@ class Home extends StatelessWidget {
                               style: TextStyle(
                                   fontFamily: "Avenir-Regular",
                                   fontSize: 12.0,
-                                  color: (icon[index].toString() == "exercise") ? const Color(0xFFF5907B) : const Color(0xFF7BC9F5)
-                              ),
+                                  color: (icon[index].toString() == "exercise")
+                                      ? const Color(0xFFF5907B)
+                                      : const Color(0xFF7BC9F5)),
                             ),
                           ),
                         ),

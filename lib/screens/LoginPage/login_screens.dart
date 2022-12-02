@@ -17,16 +17,17 @@ class LoginScreens extends StatefulWidget {
   State<LoginScreens> createState() => _LoginScreensState();
 }
 
-enum LoginStatus{
-  notSignIn,
-  signIn
-}
+enum LoginStatus { notSignIn, signIn }
 
 class _LoginScreensState extends State<LoginScreens>
     with TickerProviderStateMixin {
   LoginStatus _loginStatus = LoginStatus.notSignIn;
   int current = 0;
-  String? userEmail, userPassword, userDoctorEmail, userDoctorPassword, userDoctorId;
+  String? userEmail,
+      userPassword,
+      userDoctorEmail,
+      userDoctorPassword,
+      userDoctorId;
   final _key = GlobalKey<FormState>();
 
   // Doctor Form Controller
@@ -62,8 +63,10 @@ class _LoginScreensState extends State<LoginScreens>
     final response = await http.post(Uri.parse(apiurl), body: {
       'userEmail': userEmailController.text, //get the username text
       'userPassword': userPasswordController.text, //get password text
-      'userDoctorEmail': userDoctorEmailController.text, //get the doctor username text
-      'userDoctorPassword': userDoctorPasswordController.text  //get doctor password text
+      'userDoctorEmail':
+          userDoctorEmailController.text, //get the doctor username text
+      'userDoctorPassword':
+          userDoctorPasswordController.text //get doctor password text
     });
 
     final data = json.decode(response.body);
@@ -104,7 +107,8 @@ class _LoginScreensState extends State<LoginScreens>
     setState(() {
       valuePref = pref.getInt("valuePref");
 
-      _loginStatus = valuePref == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
+      _loginStatus =
+          valuePref == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
     });
   }
 
@@ -129,7 +133,7 @@ class _LoginScreensState extends State<LoginScreens>
       {"Role": "Doctor", "Icons": "assets/icons/doctor.svg"},
       {"Role": "Personal User", "Icons": "assets/icons/user.svg"},
     ];
-    switch (_loginStatus)  {
+    switch (_loginStatus) {
       case LoginStatus.notSignIn:
         return GestureDetector(
           onTap: () {
@@ -190,12 +194,12 @@ class _LoginScreensState extends State<LoginScreens>
                                   borderRadius: BorderRadius.circular(10),
                                   border: current == index
                                       ? Border.all(
-                                    color: const Color(0XFF62A19B),
-                                    width: 2,
-                                  )
+                                          color: const Color(0XFF62A19B),
+                                          width: 2,
+                                        )
                                       : Border.all(
-                                    color: Colors.transparent,
-                                  ),
+                                          color: Colors.transparent,
+                                        ),
                                 ),
                                 child: Column(
                                   children: [
@@ -224,7 +228,9 @@ class _LoginScreensState extends State<LoginScreens>
                       ),
                       Container(
                         alignment: Alignment.center,
-                        child: current == 0 ? doctorFormRegist() : userFormRegist(),
+                        child: current == 0
+                            ? doctorFormRegist()
+                            : userFormRegist(),
                       ),
                     ],
                   ),
@@ -234,7 +240,7 @@ class _LoginScreensState extends State<LoginScreens>
           ),
         );
       case LoginStatus.signIn:
-        return Screens(signOut);
+        return Screens(signOut, userEmailController.text);
     }
   }
 
@@ -277,16 +283,41 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 10,
           ),
-          ButtonBar(
-            children: <Widget>[
-              ElevatedButton.icon(
-                  onPressed: () {
-                    check();
-                  },
-                  icon: const Icon(Icons.arrow_forward),
-                  label: const Text('Login')),
-            ],
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0XFF62A19B),
+              fixedSize: const Size(100, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      Screens(signOut, userDoctorEmailController.text),
+                ),
+              );
+            },
+            child: const Text(
+              "Login",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
+          // ButtonBar(
+          //   children: <Widget>[
+          //     ElevatedButton.icon(
+          //         onPressed: () {
+          //           check();
+          //         },
+          //         icon: const Icon(Icons.arrow_forward),
+          //         label: const Text('Login')),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -331,16 +362,41 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 10,
           ),
-          ButtonBar(
-            children: <Widget>[
-              ElevatedButton.icon(
-                  onPressed: () {
-                    check();
-                  },
-                  icon: const Icon(Icons.arrow_forward),
-                  label: const Text('Login')),
-            ],
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0XFF62A19B),
+              fixedSize: const Size(100, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) =>
+                      Screens(signOut, userEmailController.text),
+                ),
+              );
+            },
+            child: const Text(
+              "Login",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
+          // ButtonBar(
+          //   children: <Widget>[
+          //     ElevatedButton.icon(
+          //         onPressed: () {
+          //           check();
+          //         },
+          //         icon: const Icon(Icons.arrow_forward),
+          //         label: const Text('Login')),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -358,7 +414,7 @@ class _LoginScreensState extends State<LoginScreens>
           }
           return null;
         },
-        onSaved: (e)=>userDoctorEmail = e,
+        onSaved: (e) => userDoctorEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -425,8 +481,8 @@ class _LoginScreensState extends State<LoginScreens>
             return "Password tidak boleh kosong";
           }
           return null;
-      },
-        onSaved: (e)=>userDoctorPassword = e,
+        },
+        onSaved: (e) => userDoctorPassword = e,
         obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
@@ -492,13 +548,14 @@ class _LoginScreensState extends State<LoginScreens>
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.07,
       child: TextFormField(
+        controller: userEmailController,
         validator: (e) {
           if (e!.isEmpty) {
             return "Email tidak boleh kosong";
           }
           return null;
         },
-        onSaved: (e)=>userEmail = e,
+        onSaved: (e) => userEmail = e,
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -566,7 +623,7 @@ class _LoginScreensState extends State<LoginScreens>
           }
           return null;
         },
-        onSaved: (e)=>userPassword = e,
+        onSaved: (e) => userPassword = e,
         obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 import 'package:mom_and_kids_app/screens/Subscriptions/transaction.dart';
 import 'package:mom_and_kids_app/screens/home/main_home.dart';
+import 'package:mom_and_kids_app/screens/profile/profile.dart';
 import 'package:mom_and_kids_app/screens/register/register_screen.dart';
 import 'screens/GetStarted/get_started_detail_screen.dart';
 import 'screens/GetStarted/get_started_screen.dart';
@@ -23,6 +24,7 @@ final Map<String, WidgetBuilder> routes = {
   Subscription.routesName: (context) => const Subscription(),
   Payments.routesName: (context) => Payments(),
   RegisterScreens.routesName: (context) => const RegisterScreens(),
-  Screens.routesName: (context) => Screens((){}),
-  Transaction.routesName: (context) => Transaction(),
+  Screens.routesName: (context) => Screens(() {}, "arif@gmail.com"),
+  Transaction.routesName: (context) => const Transaction(),
+  ProfileDetail.routesName: (context) => ProfileDetail(),
 };

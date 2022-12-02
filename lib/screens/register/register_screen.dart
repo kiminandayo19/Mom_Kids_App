@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mom_and_kids_app/Widgets/to_login.dart';
+import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 // import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
 
 class RegisterScreens extends StatefulWidget {
@@ -304,16 +305,40 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 10,
           ),
-          ButtonBar(
-            children: <Widget>[
-              ElevatedButton.icon(
-                  onPressed: () {
-                    check();
-                  },
-                  icon: const Icon(Icons.arrow_forward),
-                  label: const Text('Sign Up')),
-            ],
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0XFF62A19B),
+              fixedSize: const Size(120, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginScreens(),
+                ),
+              );
+            },
+            child: const Text(
+              "Sign Up",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
+          // ButtonBar(
+          //   children: <Widget>[
+          //     ElevatedButton.icon(
+          //         onPressed: () {
+          //           check();
+          //         },
+          //         icon: const Icon(Icons.arrow_forward),
+          //         label: const Text('Sign Up')),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -371,16 +396,40 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 10,
           ),
-          ButtonBar(
-            children: <Widget>[
-              ElevatedButton.icon(
-                  onPressed: () {
-                    check();
-                  },
-                  icon: const Icon(Icons.arrow_forward),
-                  label: const Text('Sign Up')),
-            ],
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0XFF62A19B),
+              fixedSize: const Size(120, 40),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => const LoginScreens(),
+                ),
+              );
+            },
+            child: const Text(
+              "Sign Up",
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
+          // ButtonBar(
+          //   children: <Widget>[
+          //     ElevatedButton.icon(
+          //         onPressed: () {
+          //           check();
+          //         },
+          //         icon: const Icon(Icons.arrow_forward),
+          //         label: const Text('Sign Up')),
+          //   ],
+          // ),
         ],
       ),
     );
