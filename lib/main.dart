@@ -22,9 +22,10 @@ class MomAndKids extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: const Color(0xFFFCFCFC),
+        applyElevationOverlayColor: true,
       ),
-      initialRoute: Screens.routesName,
-      // initialRoute: Splash.routesName,
+      // initialRoute: Screens.routesName,
+      initialRoute: Splash.routesName,
       // home: LoginScreens(),
       routes: routes,
     );

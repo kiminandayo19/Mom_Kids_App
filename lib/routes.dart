@@ -12,6 +12,7 @@ import 'screens/Subscriptions/payments.dart';
 import 'screens/Subscriptions/subscription_screen.dart';
 import 'screens/home/studdler_home_screen.dart';
 import 'screens/splash.dart';
+import 'screens/devices/device.dart';
 
 final Map<String, WidgetBuilder> routes = {
   Splash.routesName: (context) => const Splash(),
@@ -24,7 +25,11 @@ final Map<String, WidgetBuilder> routes = {
   Subscription.routesName: (context) => const Subscription(),
   Payments.routesName: (context) => Payments(),
   RegisterScreens.routesName: (context) => const RegisterScreens(),
-  Screens.routesName: (context) => Screens(() {}, "arif@gmail.com"),
+  Screens.routesName: (context) => Screens(
+        () {},
+        "arif@gmail.com",
+      ),
   Transaction.routesName: (context) => const Transaction(),
   ProfileDetail.routesName: (context) => ProfileDetail(),
+  Device.routesName: (context) => const Device()
 };

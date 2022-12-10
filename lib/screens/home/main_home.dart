@@ -56,8 +56,9 @@ class _ScreensState extends State<Screens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       key: scaffoldKey,
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       appBar: _selectedIndex == 0
           ? AppBar(
               leading: Builder(
@@ -66,6 +67,7 @@ class _ScreensState extends State<Screens> {
                     icon: const Icon(
                       Icons.menu,
                       color: Color(0xFF000000),
+                      size: 32,
                     ),
                     onPressed: () {
                       Scaffold.of(context).openDrawer();
@@ -78,6 +80,7 @@ class _ScreensState extends State<Screens> {
                 "Hi, Suci Hendrawati",
                 style: TextStyle(
                     fontFamily: "Avenir-Black",
+                    fontWeight: FontWeight.w700,
                     fontSize: 16.0,
                     color: Colors.black),
               ),
