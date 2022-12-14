@@ -3,26 +3,35 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mom_and_kids_app/Widgets/button.dart';
 import 'package:mom_and_kids_app/screens/devices/device.dart';
 
-class Home extends StatelessWidget {
-  String deviceName = "Lilygo Wristband";
-  Home({
+class Home extends StatefulWidget {
+  const Home({
     super.key,
   });
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   List<String> activities = [
     "Pregnancy exercise",
     "Drink more water",
     "Eat more protein"
   ];
+
   List<int> quantity = [30, 2, 40];
+
   List<String> icon = ["exercise", "water", "exercise"];
+
   List<String> frequency = ["mins/day", "lt/days", "gr/day"];
+
   List<String> judul = [
     "High Temperature",
     "Normal Blood Pressure",
     "Low Heart Rate",
     "Normal Oxygen Level",
   ];
+
   List<String> textt = [
     "Kenaikan suhu pada trisemester awal kehamilan adalah hal yang wajar karena tubuh beradaptasi, apabila perubahan suhu terlalu tinggi maka salah satu faktornya dipicu oleh respon tubuh melawan bakteri atau virus.",
     "Pada trimester dua kehamilan, tekanan darah rendah karena pembuluh darah melebar untuk jalannya darah ke rahim. Faktor lain juga dapar memengaruhi seperti anemia, dehidrasi, malnutrisi, penyait jantung, dsb",
@@ -32,6 +41,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Default device is "Lilygo Wristband"
+    final deviceName =
+        ModalRoute.of(context)?.settings.arguments ?? "Lilygo Wristband";
     return SingleChildScrollView(
       physics: const ScrollPhysics(),
       child: Column(

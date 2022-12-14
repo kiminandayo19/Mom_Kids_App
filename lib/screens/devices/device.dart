@@ -102,7 +102,8 @@ class _DeviceState extends State<Device> {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.pushReplacementNamed(context, Screens.routesName);
+                    Navigator.pushReplacementNamed(context, Screens.routesName,
+                        arguments: choosedDevice);
                   },
                   child: const Text(
                     "Continue",
