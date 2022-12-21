@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mom_and_kids_app/routes.dart';
-import 'package:mom_and_kids_app/screens/home/main_home.dart';
 import 'package:mom_and_kids_app/screens/splash.dart';
 
 void main() {
