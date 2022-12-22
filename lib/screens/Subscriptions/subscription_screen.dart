@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../Widgets/AppBars/gs-3.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 import '../../Widgets/circle_indicator.dart';
 import '../../components/Subscription/subscript_components.dart';
 
@@ -16,7 +16,10 @@ class _SubscriptionState extends State<Subscription> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS3(),
+      appBar: NavAppBar(
+        useLeading: true,
+        useActions: false,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           horizontal: 40,

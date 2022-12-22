@@ -12,6 +12,7 @@ const whiteMassive = Color(0XFFF5F5F5);
 const whiteSoft = Color(0XFFF0F5F5);
 const whitePlaceHolder = Color(0XFFA7A7A7);
 const whiteSystemHeavy = Color(0XFFF4F7F8);
+const whiteRoot = Color(0XFFFFFFFF);
 
 // Palette - Orange
 const orangeMassive = Color(0XFFD95A3F);
@@ -21,6 +22,9 @@ const orangeSoft = Color(0XFFF5907B);
 // Palette - Black
 const blackRoot = Color(0XFF000000);
 const blackSoft = Color.fromRGBO(0, 0, 0, 0.5);
+
+// Palette - Transparent
+const transparent = Colors.transparent;
 
 // Width & Height
 var deviceWidth = (BuildContext context) {

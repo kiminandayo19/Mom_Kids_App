@@ -1,11 +1,10 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:mom_and_kids_app/Widgets/to_login.dart';
+import 'package:mom_and_kids_app/Widgets/Button/button.dart';
+import 'package:mom_and_kids_app/Widgets/CombineHyperLinkText/combineHyperLinkText.dart.dart';
+import 'package:mom_and_kids_app/screens/GetStarted/get_started_detail_screen.dart';
 import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
-// import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
+import 'package:mom_and_kids_app/utils/constant.dart';
 
 class RegisterScreens extends StatefulWidget {
   static String routesName = "/register-page";
@@ -18,7 +17,7 @@ class RegisterScreens extends StatefulWidget {
 class _RegisterScreensState extends State<RegisterScreens>
     with TickerProviderStateMixin {
   final _regFormKey = GlobalKey();
-  dynamic? userName,
+  dynamic userName,
       userEmail,
       userPassword,
       userDoctorName,
@@ -38,104 +37,6 @@ class _RegisterScreensState extends State<RegisterScreens>
   TextEditingController userNameController = TextEditingController();
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
-
-  bool _secureText = true;
-
-  // Future regist() async {
-  //   try {
-  //     return await http.post(
-  //         Uri.parse("http://192.168.28.81/momkids_testing/create.php"),
-  //         body: {
-  //           'nama': userInputController.text,
-  //           'pass': userPassController.text,
-  //         }).then((value) {
-  //       var data = jsonDecode(value.body);
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-
-  Future register() async {
-    String apiurl = "http://192.168.28.81/momkids_testing/create.php";
-    try {
-      return await http.post(Uri.parse(apiurl), body: {
-        'nama': userNameController.text,
-        'pass': userPasswordController.text,
-        'email': userEmailController.text,
-      }).then((value) {
-        var data = jsonDecode(value.body);
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  showHide() {
-    setState(() {
-      _secureText = !_secureText;
-    });
-  }
-  // String apiurl = "http://192.168.28.81/momkids_testing/create.php";
-  // try {
-  //   return await http.post(Uri.parse(apiurl), body: {
-  //     'nama': userNameController.text,
-  //     'pass': userPasswordController.text,
-  //     'email': userEmailController.text,
-  //   }).then((value) {
-  //     var data = jsonDecode(value.body);
-  //   });
-  // } catch (e) {
-  //   print(e);
-  //   showHide() {
-  //     setState(() {
-  //       _secureText = !_secureText;
-  //     });
-  //   }
-
-  // register() async {
-  //   String apiurl = "http://192.168.1.9/momkids/register.php"; //api url
-  //   //dont use http://localhost , because emulator don't get that address
-  //   //instead use your local IP address or use live URL
-  //   //hit "ipconfig" in windows or "ip a" in linux to get you local IP
-  //   final response = await http.post(Uri.parse(apiurl), body: {
-  //     'userEmail': userEmail, //get the username text
-  //     'userPassword': userPassword, //get password text
-  //     'userDoctorEmail': userDoctorEmail, //get the doctor username text
-  //     'userDoctorPassword': userDoctorPassword, //get doctor password text
-  //     'userDoctorId': userDoctorId //get doctor id text
-  //   });
-  //   final data = json.decode(response.body);
-  //   int value = data['value'];
-  //   if (value == 1) {
-  //     setState(() {
-  //       Navigator.pop(context);
-  //     });
-  //     Fluttertoast.showToast(
-  //         msg: "Akun anda berhasil didaftarkan.",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.CENTER,
-  //         timeInSecForIosWeb: 1,
-  //         textColor: Colors.green,
-  //         fontSize: 25.0);
-  //   } else {
-  //     Fluttertoast.showToast(
-  //         msg: "Email sudah terdaftar.",
-  //         toastLength: Toast.LENGTH_SHORT,
-  //         gravity: ToastGravity.CENTER,
-  //         timeInSecForIosWeb: 1,
-  //         textColor: Colors.red,
-  //         fontSize: 25.0);
-  //   }
-  // }
-
-  check() {
-    final form = _key.currentState!;
-    if (form.validate()) {
-      form.save();
-      register();
-    }
-  }
 
   int current = 0;
 
@@ -167,12 +68,11 @@ class _RegisterScreensState extends State<RegisterScreens>
               ),
               child: Column(
                 children: [
-                  const Text(
+                  Text(
                     "Sign Up",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Avenir-Black",
-                      fontWeight: FontWeight.bold,
+                    style: nunitoNormal(
+                      color: blackRoot,
+                      fontWeight: FontWeight.w700,
                       fontSize: 20,
                     ),
                   ),
@@ -201,15 +101,15 @@ class _RegisterScreensState extends State<RegisterScreens>
                             width: 128,
                             height: 128,
                             decoration: BoxDecoration(
-                              color: const Color(0XFFF4F7F8),
+                              color: whiteSystemHeavy,
                               borderRadius: BorderRadius.circular(10),
                               border: current == index
                                   ? Border.all(
-                                      color: const Color(0XFF62A19B),
+                                      color: greenRoot,
                                       width: 2,
                                     )
                                   : Border.all(
-                                      color: Colors.transparent,
+                                      color: transparent,
                                     ),
                             ),
                             child: Column(
@@ -224,11 +124,7 @@ class _RegisterScreensState extends State<RegisterScreens>
                                 ),
                                 Text(
                                   navItems[index]["Role"]!,
-                                  style: const TextStyle(
-                                    fontFamily: "Avenir-Roman",
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                  ),
+                                  style: nunitoNormal(),
                                 ),
                               ],
                             ),
@@ -301,44 +197,23 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 5,
           ),
-          const ToLoginText(),
+          CombineHyperlinkText(
+            unclickableText: "Already have an account?",
+            clickableText: "Login",
+            onTap: () {
+              Navigator.pushNamed(context, LoginScreens.routesName);
+            },
+          ),
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0XFF62A19B),
-              fixedSize: const Size(120, 40),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100),
-              ),
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const LoginScreens(),
-                ),
-              );
-            },
-            child: const Text(
-              "Sign Up",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
-            ),
+          Button(
+            onPressed: () => Navigator.pushNamed(context, GetStartedDetail.routesName),
+            label: "Sign Up",
+            width: 129.0,
+            height: 35.0,
+            fontSize: 16.0,
           ),
-          // ButtonBar(
-          //   children: <Widget>[
-          //     ElevatedButton.icon(
-          //         onPressed: () {
-          //           check();
-          //         },
-          //         icon: const Icon(Icons.arrow_forward),
-          //         label: const Text('Sign Up')),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -392,44 +267,23 @@ class _RegisterScreensState extends State<RegisterScreens>
           const SizedBox(
             height: 5,
           ),
-          const ToLoginText(),
+          CombineHyperlinkText(
+            unclickableText: "Already have an account?",
+            clickableText: "Login",
+            onTap: () {
+              Navigator.pushNamed(context, LoginScreens.routesName);
+            },
+          ),
           const SizedBox(
             height: 10,
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0XFF62A19B),
-              fixedSize: const Size(120, 40),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(100),
-              ),
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (BuildContext context) => const LoginScreens(),
-                ),
-              );
-            },
-            child: const Text(
-              "Sign Up",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-              ),
-            ),
+          Button(
+            onPressed: () => Navigator.pushNamed(context, GetStartedDetail.routesName),
+            label: "Sign Up",
+            width: 129.0,
+            height: 35.0,
+            fontSize: 16.0,
           ),
-          // ButtonBar(
-          //   children: <Widget>[
-          //     ElevatedButton.icon(
-          //         onPressed: () {
-          //           check();
-          //         },
-          //         icon: const Icon(Icons.arrow_forward),
-          //         label: const Text('Sign Up')),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -522,16 +376,11 @@ class _RegisterScreensState extends State<RegisterScreens>
           return null;
         },
         onSaved: (e) => userDoctorPassword = e,
-        obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          suffixIcon: IconButton(
-            onPressed: showHide(),
-            icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),
@@ -674,16 +523,11 @@ class _RegisterScreensState extends State<RegisterScreens>
           return null;
         },
         onSaved: (e) => userPassword = e,
-        obscureText: _secureText,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          suffixIcon: IconButton(
-            onPressed: showHide,
-            icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
           fillColor: const Color(0XFFF4F7F8),

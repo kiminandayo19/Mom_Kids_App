@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mom_and_kids_app/Widgets/button.dart';
+import 'package:mom_and_kids_app/Widgets/Button/button.dart';
 import 'package:mom_and_kids_app/screens/register/register_screen.dart';
-import '../../Widgets/AppBars/gs-2.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 
 class PreqQScreen extends StatefulWidget {
   static String routesName = "/preg-q-page";
@@ -30,7 +30,10 @@ class _PreqQScreenState extends State<PreqQScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS2(),
+      appBar: NavAppBar(
+        useLeading: true,
+        useActions: true,
+      ),
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -191,16 +194,16 @@ class _PreqQScreenState extends State<PreqQScreen> {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          Center(
-            child: Button(
-              width: 40,
-              height: 60,
-              radius: 100,
-              text: "Continue",
-              fontSize: 16,
-              routeTo: RegisterScreens.routesName,
-            ),
-          ),
+          // Center(
+          //   child: Button(
+          //     width: 40,
+          //     height: 60,
+          //     radius: 100,
+          //     text: "Continue",
+          //     fontSize: 16,
+          //     routeTo: RegisterScreens.routesName,
+          //   ),
+          // ),
         ],
       ),
     );

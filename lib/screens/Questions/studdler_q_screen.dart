@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mom_and_kids_app/screens/register/register_screen.dart';
-import '../../Widgets/AppBars/gs-2.dart';
-import '../../Widgets/button.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
+import '../../Widgets/Button/button.dart';
 
 class StuddlerQScreen extends StatefulWidget {
   static String routesName = "/studdler-q-page";
@@ -29,7 +29,10 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS2(),
+      appBar: NavAppBar(
+        useActions: true,
+        useLeading: true,
+      ),
       body: GestureDetector(
         onTap: () {
           FocusScopeNode currentFocus = FocusScope.of(context);
@@ -72,16 +75,16 @@ class _StuddlerQScreenState extends State<StuddlerQScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Center(
-                      child: Button(
-                        width: 50,
-                        height: 80,
-                        radius: 100,
-                        text: "Continue",
-                        fontSize: 16,
-                        routeTo: RegisterScreens.routesName,
-                      ),
-                    ),
+                    // Center(
+                    //   child: Button(
+                    //     width: 50,
+                    //     height: 80,
+                    //     radius: 100,
+                    //     text: "Continue",
+                    //     fontSize: 16,
+                    //     routeTo: RegisterScreens.routesName,
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

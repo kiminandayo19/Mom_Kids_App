@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../../Widgets/AppBars/gs-1.dart';
-import '../../Widgets/button.dart';
-import '../../Widgets/to_login.dart';
-import 'get_started_detail_screen.dart';
+import 'package:mom_and_kids_app/Widgets/CombineHyperLinkText/combineHyperLinkText.dart.dart';
+import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
+import 'package:mom_and_kids_app/screens/register/register_screen.dart';
+import '../../Widgets/Button/button.dart';
+import '../../utils/constant.dart';
 
 class GetStarted extends StatelessWidget {
   static String routesName = "/get-started";
@@ -25,20 +26,18 @@ class GetStarted extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
+                Text(
                   "Welcome to Mom & Kids,",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "Avenir-Roman",
+                  style: nunitoNormal(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
-                const Text(
+                Text(
                   "the most complete parenting app",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "Avenir-Roman",
+                  style: nunitoNormal(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                   ),
@@ -50,16 +49,20 @@ class GetStarted extends StatelessWidget {
               child: Column(
                 children: [
                   Button(
-                    routeTo: GetStartedDetail.routesName,
-                    height: 337,
-                    width: 54,
-                    radius: 100,
-                    text: "Get Started",
-                    fontSize: 16,
+                    onPressed: () {
+                      Navigator.pushNamed(context, RegisterScreens.routesName);
+                    },
+                    label: "Get Started",
                   ),
                   Container(
                     margin: const EdgeInsets.only(top: 10),
-                    child: const ToLoginText(),
+                    child: CombineHyperlinkText(
+                      unclickableText: "Already have an account?",
+                      clickableText: "Log in",
+                      onTap: () {
+                        Navigator.pushNamed(context, LoginScreens.routesName);
+                      },
+                    ),
                   ),
                 ],
               ),

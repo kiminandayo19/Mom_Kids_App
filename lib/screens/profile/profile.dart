@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mom_and_kids_app/Widgets/AppBars/gs-3.dart';
 import 'package:mom_and_kids_app/screens/LoginPage/login_screens.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 
 class ProfileDetail extends StatelessWidget {
   static const String routesName = '/profile';
@@ -20,7 +20,10 @@ class ProfileDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS3(),
+      appBar: NavAppBar(
+        useLeading: true,
+        useActions: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 20,

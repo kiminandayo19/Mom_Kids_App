@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mom_and_kids_app/Widgets/AppBars/gs-3.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 import 'package:mom_and_kids_app/arguments/payments-arg.dart';
 
 class Transaction extends StatefulWidget {
@@ -19,7 +19,10 @@ class _TransactionState extends State<Transaction> {
     var arg = ModalRoute.of(context)?.settings.arguments as PaymentArguments;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS3(),
+      appBar: NavAppBar(
+        useLeading: true,
+        useActions: false,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 20,

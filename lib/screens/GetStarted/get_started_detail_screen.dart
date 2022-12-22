@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mom_and_kids_app/Widgets/AppBars/gs-1.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 import '../Questions/pregnant_q_screen.dart';
 import '../Questions/studdler_q_screen.dart';
 
@@ -13,7 +13,10 @@ class GetStartedDetail extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      appBar: const GS1(),
+      appBar: NavAppBar(
+        useActions: true,
+        useLeading: false,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 30,

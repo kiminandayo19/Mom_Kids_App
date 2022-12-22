@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mom_and_kids_app/Widgets/AppBars/gs-3.dart';
-import 'package:mom_and_kids_app/Widgets/button.dart';
+import 'package:mom_and_kids_app/Widgets/Button/button.dart';
 import 'package:mom_and_kids_app/screens/home/main_home.dart';
+import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
 
 class Device extends StatefulWidget {
   static String routesName = '/device';
@@ -26,7 +26,10 @@ class _DeviceState extends State<Device> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const GS3(),
+      appBar: NavAppBar(
+        useLeading: true,
+        useActions: false,
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 15,

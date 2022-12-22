@@ -1,13 +1,13 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:mom_and_kids_app/Widgets/CombineHyperLinkText/combineHyperLinkText.dart.dart';
+import 'package:mom_and_kids_app/screens/register/register_screen.dart';
+import 'package:mom_and_kids_app/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mom_and_kids_app/screens/home/main_home.dart';
-
-import '../../Widgets/to_signup.dart';
 
 class LoginScreens extends StatefulWidget {
   static String routesName = "/login-page";
@@ -190,7 +190,7 @@ class _LoginScreensState extends State<LoginScreens>
                                 width: 128,
                                 height: 128,
                                 decoration: BoxDecoration(
-                                  color: const Color(0XFFF4F7F8),
+                                  color: whiteSystemHeavy,
                                   borderRadius: BorderRadius.circular(10),
                                   border: current == index
                                       ? Border.all(
@@ -279,7 +279,13 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 20,
           ),
-          const ToSignUpText(),
+          CombineHyperlinkText(
+            unclickableText: "Didn't have account?",
+            clickableText: "Sign Up",
+            onTap: () {
+              Navigator.pushNamed(context, RegisterScreens.routesName);
+            },
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -308,16 +314,6 @@ class _LoginScreensState extends State<LoginScreens>
               ),
             ),
           ),
-          // ButtonBar(
-          //   children: <Widget>[
-          //     ElevatedButton.icon(
-          //         onPressed: () {
-          //           check();
-          //         },
-          //         icon: const Icon(Icons.arrow_forward),
-          //         label: const Text('Login')),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -358,7 +354,13 @@ class _LoginScreensState extends State<LoginScreens>
           const SizedBox(
             height: 20,
           ),
-          const ToSignUpText(),
+          CombineHyperlinkText(
+            unclickableText: "Didn't have account?",
+            clickableText: "Sign Up",
+            onTap: () {
+              Navigator.pushNamed(context, RegisterScreens.routesName);
+            },
+          ),
           const SizedBox(
             height: 10,
           ),
@@ -387,16 +389,6 @@ class _LoginScreensState extends State<LoginScreens>
               ),
             ),
           ),
-          // ButtonBar(
-          //   children: <Widget>[
-          //     ElevatedButton.icon(
-          //         onPressed: () {
-          //           check();
-          //         },
-          //         icon: const Icon(Icons.arrow_forward),
-          //         label: const Text('Login')),
-          //   ],
-          // ),
         ],
       ),
     );
@@ -422,7 +414,7 @@ class _LoginScreensState extends State<LoginScreens>
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
           ),
           filled: true,
-          fillColor: const Color(0XFFF4F7F8),
+          fillColor: whiteSystemHeavy,
           hintText: "Email",
           prefixIcon: const Icon(
             IconData(
@@ -431,45 +423,11 @@ class _LoginScreensState extends State<LoginScreens>
             ),
             color: Color(0xFF808080),
           ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
+          hintStyle: nunitoNormal(),
         ),
       ),
     );
   }
-
-  // SizedBox doctorName() {
-  //   return SizedBox(
-  //     width: MediaQuery.of(context).size.width,
-  //     height: MediaQuery.of(context).size.height * 0.07,
-  //     child: TextFormField(
-  //       controller: userDoctorNameController,
-  //       keyboardType: TextInputType.text,
-  //       decoration: InputDecoration(
-  //         border: OutlineInputBorder(
-  //           borderRadius: BorderRadius.circular(10),
-  //           borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-  //         ),
-  //         filled: true,
-  //         fillColor: const Color(0XFFF4F7F8),
-  //         hintText: "Username",
-  //         prefixIcon: const Icon(
-  //           IconData(
-  //             0xee72,
-  //             fontFamily: 'MaterialIcons',
-  //           ),
-  //           color: Color(0xFF808080),
-  //         ),
-  //         hintStyle: const TextStyle(
-  //           fontSize: 16,
-  //           fontFamily: "Avenir-Roman",
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   SizedBox doctorPassword() {
     return SizedBox(
@@ -495,7 +453,7 @@ class _LoginScreensState extends State<LoginScreens>
             icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
-          fillColor: const Color(0XFFF4F7F8),
+          fillColor: whiteSystemHeavy,
           hintText: "Password",
           prefixIcon: SvgPicture.asset(
             "assets/icons/password.svg",
@@ -503,44 +461,11 @@ class _LoginScreensState extends State<LoginScreens>
             height: 10,
             fit: BoxFit.scaleDown,
           ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
+          hintStyle: nunitoNormal(),
         ),
       ),
     );
   }
-
-  // SizedBox doctorId() {
-  //   return SizedBox(
-  //     width: MediaQuery.of(context).size.width,
-  //     height: MediaQuery.of(context).size.height * 0.07,
-  //     child: TextFormField(
-  //       onSaved: (e)=>userDoctorId = e,
-  //       keyboardType: TextInputType.number,
-  //       decoration: InputDecoration(
-  //         border: OutlineInputBorder(
-  //           borderRadius: BorderRadius.circular(10),
-  //           borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-  //         ),
-  //         filled: true,
-  //         fillColor: const Color(0XFFF4F7F8),
-  //         hintText: "Doctor ID",
-  //         prefixIcon: SvgPicture.asset(
-  //           "assets/icons/id.svg",
-  //           width: 10,
-  //           height: 10,
-  //           fit: BoxFit.scaleDown,
-  //         ),
-  //         hintStyle: const TextStyle(
-  //           fontSize: 16,
-  //           fontFamily: "Avenir-Roman",
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
 // Personal User Form
   SizedBox userPersonalEmail() {
@@ -563,7 +488,7 @@ class _LoginScreensState extends State<LoginScreens>
             borderSide: const BorderSide(width: 0, style: BorderStyle.none),
           ),
           filled: true,
-          fillColor: const Color(0XFFF4F7F8),
+          fillColor: whiteSystemHeavy,
           hintText: "Email",
           prefixIcon: const Icon(
             IconData(
@@ -572,45 +497,11 @@ class _LoginScreensState extends State<LoginScreens>
             ),
             color: Color(0xFF808080),
           ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
+          hintStyle: nunitoNormal(),
         ),
       ),
     );
   }
-
-  // SizedBox userPersonalName() {
-  //   return SizedBox(
-  //     width: MediaQuery.of(context).size.width,
-  //     height: MediaQuery.of(context).size.height * 0.07,
-  //     child: TextFormField(
-  //       controller: userNameController,
-  //       keyboardType: TextInputType.text,
-  //       decoration: InputDecoration(
-  //         border: OutlineInputBorder(
-  //           borderRadius: BorderRadius.circular(10),
-  //           borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-  //         ),
-  //         filled: true,
-  //         fillColor: const Color(0XFFF4F7F8),
-  //         hintText: "Username",
-  //         prefixIcon: const Icon(
-  //           IconData(
-  //             0xee72,
-  //             fontFamily: "MaterialIcons",
-  //           ),
-  //           color: Color(0xFF808080),
-  //         ),
-  //         hintStyle: const TextStyle(
-  //           fontSize: 16,
-  //           fontFamily: "Avenir-Roman",
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
 
   SizedBox userPersonalPassword() {
     return SizedBox(
@@ -636,7 +527,7 @@ class _LoginScreensState extends State<LoginScreens>
             icon: Icon(_secureText ? Icons.visibility_off : Icons.visibility),
           ),
           filled: true,
-          fillColor: const Color(0XFFF4F7F8),
+          fillColor: whiteSystemHeavy,
           hintText: "Password",
           prefixIcon: SvgPicture.asset(
             "assets/icons/password.svg",
@@ -644,10 +535,7 @@ class _LoginScreensState extends State<LoginScreens>
             height: 10,
             fit: BoxFit.scaleDown,
           ),
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
+          hintStyle: nunitoNormal(),
         ),
       ),
     );

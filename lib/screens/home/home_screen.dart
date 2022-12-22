@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:mom_and_kids_app/Widgets/button.dart';
+import 'package:mom_and_kids_app/Widgets/Button/button.dart';
 import 'package:mom_and_kids_app/screens/devices/device.dart';
 
 class Home extends StatefulWidget {
@@ -548,20 +548,20 @@ class _HomeState extends State<Home> {
                     sentences,
                     textAlign: TextAlign.center,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: 30,
-                    ),
-                    child: Center(
-                      child: Button(
-                        width: 40,
-                        height: 20,
-                        radius: 100,
-                        text: "Refresh",
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
+                  // const Padding(
+                  //   padding: EdgeInsets.symmetric(
+                  //     vertical: 30,
+                  //   ),
+                  //   child: Center(
+                  //     child: Button(
+                  //       width: 40,
+                  //       height: 20,
+                  //       radius: 100,
+                  //       text: "Refresh",
+                  //       fontSize: 16,
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
