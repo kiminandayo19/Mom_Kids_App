@@ -26,14 +26,6 @@ const blackSoft = Color.fromRGBO(0, 0, 0, 0.5);
 // Palette - Transparent
 const transparent = Colors.transparent;
 
-// Width & Height
-var deviceWidth = (BuildContext context) {
-  return MediaQuery.of(context).size.height;
-};
-var deviceHeight = (BuildContext context) {
-  return MediaQuery.of(context).size.width;
-};
-
 // Fonts
 var nunitoNormal = ({
   double fontSize = 16,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mom_and_kids_app/Widgets/Button/button.dart';
+import 'package:mom_and_kids_app/Widgets/TextFieldLabeled/textFieldLabeled.dart';
 import 'package:mom_and_kids_app/screens/register/register_screen.dart';
 import 'package:mom_and_kids_app/Widgets/AppBars/navAppBar.dart';
+import 'package:mom_and_kids_app/utils/constant.dart';
 
 class PreqQScreen extends StatefulWidget {
   static String routesName = "/preg-q-page";
@@ -13,18 +15,14 @@ class PreqQScreen extends StatefulWidget {
 }
 
 class _PreqQScreenState extends State<PreqQScreen> {
-  final _qFormKey = GlobalKey<FormState>();
-  String? username;
-  int? userage;
-  DateTime? getpregnanton, estimatedBirth, mensPeriod;
-  int? currentchild;
-
-  TextEditingController txtUserName = TextEditingController();
-  TextEditingController txtUserAge = TextEditingController();
-  TextEditingController txtGetPregnantOn = TextEditingController();
-  TextEditingController txtEstimatedBirth = TextEditingController();
-  TextEditingController txtMensPeriod = TextEditingController();
-  TextEditingController txtCurrentChild = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController ageController = TextEditingController();
+  TextEditingController datePregnant = TextEditingController();
+  TextEditingController estimatedBirth = TextEditingController();
+  TextEditingController mensPeriod = TextEditingController();
+  TextEditingController currentChild = TextEditingController();
+  TextEditingController childHeight = TextEditingController();
+  TextEditingController childWeight = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,21 +54,19 @@ class _PreqQScreenState extends State<PreqQScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       "Little Question",
-                      style:
-                          TextStyle(fontFamily: "Avenir-Black", fontSize: 32),
-                    ),
-                    const Text(
-                      "To make this app more relevant for you",
-                      style: TextStyle(
-                        fontFamily: "Avenir-Roman",
-                        fontSize: 16,
-                        color: Color(0XFF8E8E8E),
+                      style: nunitoNormal(
+                        fontSize: 32.0,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                    Text(
+                      "To make this app more relevant for you",
+                      style: nunitoNormal(
+                        color: whitePlaceHolder,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                     pregnantForm(),
                   ],
@@ -89,150 +85,46 @@ class _PreqQScreenState extends State<PreqQScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Name",
-            style: TextStyle(
-                fontSize: 16, color: Colors.black, fontFamily: "Avenir-Roman"),
+          TextFieldLabeled(
+            labelText: 'Name',
+            controller: nameController,
+            inputType: TextInputType.text,
+            hintText: 'Suci Hendrawati',
           ),
-          const SizedBox(
-            height: 9,
+          TextFieldLabeled(
+            labelText: 'Age',
+            controller: ageController,
+            inputType: TextInputType.text,
+            hintText: '28 Years Old',
           ),
-          textForm(
-            txtUserName,
-            TextInputType.text,
-            "Suci Hendrawati",
+          TextFieldLabeled(
+            labelText: 'Getting Pregnant On',
+            controller: datePregnant,
+            inputType: TextInputType.text,
+            hintText: '02 July 2022',
           ),
-          const SizedBox(
-            height: 10,
+          TextFieldLabeled(
+            labelText: 'Estimated Birth',
+            controller: estimatedBirth,
+            inputType: TextInputType.text,
+            hintText: '02 April 2023',
           ),
-          const Text(
-            "Age",
-            style: TextStyle(
-                fontSize: 16, color: Colors.black, fontFamily: "Avenir-Roman"),
+          TextFieldLabeled(
+            labelText: 'Last Menstrual Period',
+            controller: mensPeriod,
+            inputType: TextInputType.text,
+            hintText: '01 July 2022',
           ),
-          const SizedBox(
-            height: 9,
-          ),
-          textForm(
-            txtUserAge,
-            TextInputType.text,
-            "28 Years Old",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Getting Pregnant On",
-            style: TextStyle(
-                fontSize: 16, color: Colors.black, fontFamily: "Avenir-Roman"),
-          ),
-          const SizedBox(
-            height: 9,
-          ),
-          textForm(
-            txtGetPregnantOn,
-            TextInputType.text,
-            "02 July 2022",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Estimated Birth",
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-              fontFamily: "Avenir-Roman",
-            ),
-          ),
-          const SizedBox(
-            height: 9,
-          ),
-          textForm(
-            txtEstimatedBirth,
-            TextInputType.text,
-            "02 April 2023",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Last Menstrual Period",
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-              fontFamily: "Avenir-Roman",
-            ),
-          ),
-          const SizedBox(
-            height: 9,
-          ),
-          textForm(
-            txtMensPeriod,
-            TextInputType.text,
-            "01 July 2022",
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          const Text(
-            "Current Number of Child",
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-              fontFamily: "Avenir-Roman",
-            ),
-          ),
-          const SizedBox(
-            height: 9,
-          ),
-          textForm(
-            txtEstimatedBirth,
-            TextInputType.text,
-            "1 Child",
+          TextFieldLabeled(
+            labelText: 'Current Number of Child',
+            controller: currentChild,
+            inputType: TextInputType.text,
+            hintText: '1 Child',
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,
           ),
-          // Center(
-          //   child: Button(
-          //     width: 40,
-          //     height: 60,
-          //     radius: 100,
-          //     text: "Continue",
-          //     fontSize: 16,
-          //     routeTo: RegisterScreens.routesName,
-          //   ),
-          // ),
         ],
-      ),
-    );
-  }
-
-  SizedBox textForm(
-    TextEditingController? controllerName,
-    TextInputType? inputType,
-    String? hintText,
-  ) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.07,
-      child: TextFormField(
-        controller: controllerName,
-        keyboardType: inputType,
-        decoration: InputDecoration(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(width: 0, style: BorderStyle.none),
-          ),
-          filled: true,
-          fillColor: const Color(0XFFF4F7F8),
-          hintText: hintText,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontFamily: "Avenir-Roman",
-          ),
-        ),
       ),
     );
   }
