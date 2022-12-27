@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // Default device is "Lilygo Wristband"
     final deviceName =
-        ModalRoute.of(context)?.settings.arguments ?? "Lilygo Wristband";
+        ModalRoute.of(context)?.settings.arguments ?? "Select Device";
     return SingleChildScrollView(
       physics: const ScrollPhysics(),
       child: Column(
